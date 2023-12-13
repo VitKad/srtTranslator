@@ -17,24 +17,27 @@ namespace Translater
         static void Main(string[] args)
         {
        
-            //Console.WriteLine(translate(input, languageFrom, languageTo));
-            Console.WriteLine("");
+            ////Console.WriteLine(translate(input, languageFrom, languageTo));
+            Console.WriteLine("Начало перевода");
 
-            string pathOut = "D:\\Projects\\srtTranslator\\Translater\\Out\\";
-            string pathIn = "D:\\Projects\\srtTranslator\\Translater\\In\\";
+            string pathOut = "..\\..\\..\\Out\\";
+            string pathIn = "..\\..\\..\\In\\";
 
             //Сортировка по дате создания файлов от мдм и взятие 20 первых файлов.
             string[] allFilesInExchangeFolder = Directory.EnumerateFiles(pathOut).OrderBy(d => new FileInfo(d).CreationTime).Take(20).ToArray();
 
             if (allFilesInExchangeFolder.Length > 0) //если обнаружен хоть один файл
             {
-                foreach (string fileName in allFilesInExchangeFolder)
+                foreach (string file in allFilesInExchangeFolder)
                 {
-                    TranslateSubtitles(fileName, pathIn); 
+                    string fileName = System.IO.Path.GetFileNameWithoutExtension(file); //сохранить имя файла без полного пути 
+                    Console.Write("Файл: " + fileName + " - ");
+                    TranslateSubtitles(file, pathIn, fileName);
                 }   
             }
 
             //TranslateSubtitles();
+            Console.WriteLine("Выполнение программы завершено. Нажмите любую кнопку для выхода...");
             Console.ReadKey();
 
             //Работать в StringBuilder, но когда передовать в функцию переводчика, то преобразовать в string
@@ -48,9 +51,9 @@ namespace Translater
             foreach (var input in inputList)
             {
                 string textWithoutBreak = input.Replace("\r\n", " ");
-                Console.WriteLine("Входная строка:");
-                Console.WriteLine(input);
-                Console.WriteLine();
+                //Console.WriteLine("Входная строка:");
+                //Console.WriteLine(input);
+                //Console.WriteLine();
                 var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl={fromLanguage}&tl={toLanguage}&dt=t&q={HttpUtility.UrlEncode(textWithoutBreak)}";
                 var webclient = new WebClient
                 {
@@ -58,11 +61,11 @@ namespace Translater
                 };
                 var result = webclient.DownloadString(url);
 
-                // Console.WriteLine(result.Substring(4, 15));
-                // Console.WriteLine();
-                //Console.WriteLine("Строка на выходе:");
-                //Console.WriteLine(result);
-                // Console.WriteLine();
+                // //Console.WriteLine(result.Substring(4, 15));
+                // //Console.WriteLine();
+                ////Console.WriteLine("Строка на выходе:");
+                ////Console.WriteLine(result);
+                // //Console.WriteLine();
 
                 result = result.Substring(4);
 
@@ -70,23 +73,24 @@ namespace Translater
                 {
                     try
                     {
-                        //Console.WriteLine("Подстрока:");
+                        ////Console.WriteLine("Подстрока:");
                         int start = result.IndexOf("\",\"");
-                        //Console.WriteLine("start:" + start);
+                        ////Console.WriteLine("start:" + start);
 
                         int end = result.IndexOf("],[\"");
-                        //Console.WriteLine("end:" + end);
-                        //Console.WriteLine("");
-                        //Console.WriteLine(result.Substring(start, end - start));
-                        //Console.WriteLine();
+                        ////Console.WriteLine("end:" + end);
+                        ////Console.WriteLine("");
+                        ////Console.WriteLine(result.Substring(start, end - start));
+                        ////Console.WriteLine();
                         result = result.Replace(result.Substring(start, end - start + 4), " ");//, 4
-                                                                                               //Console.WriteLine("Результат после удаления подстроки:");                                                                                   //
-                                                                                               //Console.WriteLine(result);
-                                                                                               //Console.WriteLine();
+                                                                                               ////Console.WriteLine("Результат после удаления подстроки:");                                                                                   //
+                                                                                               ////Console.WriteLine(result);
+                                                                                               ////Console.WriteLine();
                     }
                     catch (Exception ex)
                     {
-                        return ex.ToString();
+                        throw new Exception("Ошибка в преобразовании текста");
+                        //return ex.ToString();
                     }
 
                 }
@@ -103,29 +107,42 @@ namespace Translater
         }
 
 
-        public static void TranslateSubtitles(string pathOut, string pathIn)
+        public static void TranslateSubtitles(string pathOut, string pathIn, string fileName)
         {
-            string fileName = System.IO.Path.GetFileNameWithoutExtension(pathOut); //сохранить имя файла без полного пути 
+            try
+            {
+                string languageFrom = "en";
+                string languageTo = "ru";
 
-            string languageFrom = "en";
-            string languageTo = "ru";
+                string srtText = "";
+                List<(string, string, string)> srtFile = GetSRTFile(pathOut, ref srtText);
 
-            string srtText = "";
-            List<(string, string, string)> srtFile = GetSRTFile(pathOut, ref srtText);
+                //Console.WriteLine(srtText);
+                string textForTranslate = GetTextFromSRTFile(srtFile);
 
-            Console.WriteLine(srtText);
-            string textForTranslate = GetTextFromSRTFile(srtFile);
+                List<string> listForTranslate = GetTextList(textForTranslate);
 
-            List<string> listForTranslate = GetTextList(textForTranslate);
+                string translatedText = TranslateText(listForTranslate, languageFrom, languageTo);
+                //Console.WriteLine("Перевод:");
+                //Console.WriteLine(translatedText);
+                //Console.WriteLine();
 
-            string translatedText = TranslateText(listForTranslate, languageFrom, languageTo);
-            Console.WriteLine("Перевод:");
-            Console.WriteLine(translatedText);
-            Console.WriteLine();
+                List<(string, string, string)> newSrtFile = ConvertTextToSubtitleFile(translatedText, srtFile);
 
-            List<(string, string, string)> newSrtFile = ConvertTextToSubtitleFile(translatedText, srtFile);
+                WriteSRTFile(newSrtFile, pathIn + fileName);
 
-            WriteSRTFile(newSrtFile, pathIn + fileName);
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Готово");
+                Console.ResetColor();
+                
+            }
+            catch (Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(ex.Message);
+                Console.ResetColor();
+            }
+           
         }
 
 
@@ -200,9 +217,9 @@ namespace Translater
                 fullTextForTranslate += blockSrt.Item3;
             }
             
-            Console.WriteLine("Полный текст для перевода:");
-            Console.WriteLine(fullTextForTranslate);
-            Console.WriteLine();
+            //Console.WriteLine("Полный текст для перевода:");
+            //Console.WriteLine(fullTextForTranslate);
+            //Console.WriteLine();
             return fullTextForTranslate;
         }
 
@@ -275,7 +292,7 @@ namespace Translater
                 text += "\r\n";
             }
             //string path = "D:\\Projects\\srtTranslator\\Translater\\2.srt";
-            File.WriteAllText(pathIn, text);
+            File.WriteAllText(pathIn + ".srt", text);
         }
     }
 }
