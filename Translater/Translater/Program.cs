@@ -26,59 +26,64 @@ namespace Translater
             //Работать в StringBuilder, но когда передовать в функцию переводчика, то преобразовать в string
         }
 
-        public static string translate(string input, string from, string to)
+        public static string TranslateText(List<string> inputList, string from, string to)
         {
             var fromLanguage = from;
             var toLanguage = to;
-            input = input.Replace("\r\n", " ");
-            Console.WriteLine("Входная строка:");
-            Console.WriteLine(input);
-            Console.WriteLine();
-            var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl={fromLanguage}&tl={toLanguage}&dt=t&q={HttpUtility.UrlEncode(input)}";
-            var webclient = new WebClient
+            string resText = "";
+            foreach (var input in inputList)
             {
-                Encoding = System.Text.Encoding.UTF8
-            };
-            var result = webclient.DownloadString(url);
-
-           // Console.WriteLine(result.Substring(4, 15));
-           // Console.WriteLine();
-            //Console.WriteLine("Строка на выходе:");
-            //Console.WriteLine(result);
-           // Console.WriteLine();
-            string res = "";
-
-            result = result.Substring(4);
-
-            while (result.Contains(",[\""))
+                string textWithoutBreak = input.Replace("\r\n", " ");
+                Console.WriteLine("Входная строка:");
+                Console.WriteLine(input);
+                Console.WriteLine();
+                var url = $"https://translate.googleapis.com/translate_a/single?client=gtx&sl={fromLanguage}&tl={toLanguage}&dt=t&q={HttpUtility.UrlEncode(textWithoutBreak)}";
+                var webclient = new WebClient
                 {
-                try
+                    Encoding = System.Text.Encoding.UTF8
+                };
+                var result = webclient.DownloadString(url);
+
+                // Console.WriteLine(result.Substring(4, 15));
+                // Console.WriteLine();
+                //Console.WriteLine("Строка на выходе:");
+                //Console.WriteLine(result);
+                // Console.WriteLine();
+
+                result = result.Substring(4);
+
+                while (result.Contains(",[\""))
                 {
-                    //Console.WriteLine("Подстрока:");
-                    int start = result.IndexOf("\",\"");
-                    //Console.WriteLine("start:" + start);
-               
-                    int end = result.IndexOf("],[\"");
-                    //Console.WriteLine("end:" + end);
-                    //Console.WriteLine("");
-                    //Console.WriteLine(result.Substring(start, end - start));
-                    //Console.WriteLine();
-                    result = result.Replace(result.Substring(start, end - start + 4), " ");//, 4
-                    //Console.WriteLine("Результат после удаления подстроки:");                                                                                   //
-                    //Console.WriteLine(result);
-                    //Console.WriteLine();
+                    try
+                    {
+                        //Console.WriteLine("Подстрока:");
+                        int start = result.IndexOf("\",\"");
+                        //Console.WriteLine("start:" + start);
+
+                        int end = result.IndexOf("],[\"");
+                        //Console.WriteLine("end:" + end);
+                        //Console.WriteLine("");
+                        //Console.WriteLine(result.Substring(start, end - start));
+                        //Console.WriteLine();
+                        result = result.Replace(result.Substring(start, end - start + 4), " ");//, 4
+                                                                                               //Console.WriteLine("Результат после удаления подстроки:");                                                                                   //
+                                                                                               //Console.WriteLine(result);
+                                                                                               //Console.WriteLine();
+                    }
+                    catch (Exception ex)
+                    {
+                        return ex.ToString();
+                    }
+
                 }
-                catch (Exception ex)
-                {
-                    return ex.ToString();
-                }
-                
+
+                int startPos = result.IndexOf("\",\"");
+                result = result.Replace(result.Substring(result.IndexOf("\",\"")), " ");//, 4
+                resText += result;
             }
 
-            int startPos = result.IndexOf("\",\"");
-            result = result.Replace(result.Substring(result.IndexOf("\",\"")), " ");//, 4
 
-            return result;
+            return resText;
             
 
         }
@@ -95,9 +100,9 @@ namespace Translater
             Console.WriteLine(srtText);
             string textForTranslate = GetTextFromSRTFile(srtFile);
 
-            //List<string> listForTranslate = GetTextList(textForTranslate);
+            List<string> listForTranslate = GetTextList(textForTranslate);
 
-            string translatedText = translate(textForTranslate, languageFrom, languageTo);
+            string translatedText = TranslateText(listForTranslate, languageFrom, languageTo);
             Console.WriteLine("Перевод:");
             Console.WriteLine(translatedText);
             Console.WriteLine();
@@ -115,14 +120,20 @@ namespace Translater
             { 
                 for (int i = 0; i < textForTranslate.Length; i += 10000)
                 {
-                    textList.Add(textForTranslate.Substring(i, 10000));
+                    if (textForTranslate.Length - 1 < i+10000)
+                    {
+                        textList.Add(textForTranslate.Substring(i, textForTranslate.Length - i - 1));
+                    }
+                    else
+                    {
+                        textList.Add(textForTranslate.Substring(i, 10000));
+                    }
                 }
             }
             else
             {
                 textList.Add(textForTranslate);
             }
-
 
             return textList;
         }
