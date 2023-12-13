@@ -1,60 +1,2120 @@
-1
-00:00:04,540 --> 00:00:11,000
-Hello. I'm Roland Guijt, and welcome to my course, ASP.NET Core 6: Big
+﻿1
+00:00:08,552 --> 00:00:09,696
+<i>And that's your biggest worry?</i>
 
 2
-00:00:11,000 --> 00:00:17,170
-Picture. I'm a Microsoft MVP, independent consultant, and trainer based in
+00:00:09,720 --> 00:00:10,864
+<i>Yes, any kind
+of virus.</i>
 
 3
-00:00:17,170 --> 00:00:22,140
-the Netherlands. If you want to know what ASP.NET Core is and what you can
+00:00:10,888 --> 00:00:13,348
+<i>But most probably
+something similar to influenza.</i>
 
 4
-00:00:22,140 --> 00:00:27,510
-do with it, this course is for you. We're covering technologies like Blazor,
+00:00:13,432 --> 00:00:14,433
+<i>Because of air travel.</i>
 
 5
-00:00:27,510 --> 00:00:35,470
-MVC, Web API, gRPC, and SignalR, and I'm showing you sample applications for
+00:00:14,516 --> 00:00:15,474
+<i>Through the air.</i>
 
 6
-00:00:35,470 --> 00:00:41,960
-each, explaining them step‑by‑step. Here, are some major topics I will talk
+00:00:15,475 --> 00:00:17,019
+- Coughing...
+- I'm sorry.
 
 7
-00:00:41,960 --> 00:00:48,240
-about, server‑rendered frontend applications with MVC and Razor pages,
+00:00:17,102 --> 00:00:18,812
+I meant people. On planes.
 
 8
-00:00:48,240 --> 00:00:53,780
-client‑rendered frontend applications with Blazor, and backend APIs
+00:00:18,896 --> 00:00:20,456
+That was something you described
+in your book.
 
 9
-00:00:53,780 --> 00:00:59,520
-with gRPC and Web API. By the end of this course, you'll be able to
+00:00:20,480 --> 00:00:23,442
+Yes, a new virus
+in Madagascar, say, could be in Chicago
 
 10
-00:00:59,520 --> 00:01:04,440
-determine if ASP.NET Core is for you, and more importantly, what it
+00:00:23,525 --> 00:00:24,526
+within a matter of weeks,
 
 11
-00:01:04,440 --> 00:01:09,000
-contains and how each contained technology works. Before beginning
+00:00:24,610 --> 00:00:27,571
+and we end up with a global pandemic.
+Pan meaning "all."
 
 12
-00:01:09,000 --> 00:01:09,990
-the course,
+00:00:27,654 --> 00:00:29,948
+The whole world becomes sick
+all at once.
 
 13
-00:01:09,990 --> 00:01:14,240
-you should have a good understanding on how the web works with requests and
+00:00:31,283 --> 00:00:33,827
+And, Dr. Neuman,
+you're also an epidemiologist.
 
 14
-00:01:14,240 --> 00:01:21,310
-responses, have HTML knowledge, and experience with .NET and C#. Get ready
+00:00:33,911 --> 00:00:34,912
+I presume the prospect
 
 15
-00:01:21,310 --> 00:01:34,000
-to unlock the wonderful world of ASP.NET Core with my course, ASP.NET Core 6: Big Picture, at Pluralsight.
+00:00:34,995 --> 00:00:36,848
+of a viral pandemic keeps you up
+at night as well.
+
+16
+00:00:36,872 --> 00:00:38,165
+- No.
+- No?
+
+17
+00:00:38,248 --> 00:00:40,000
+- No.
+- All right, well, that's our show.
+
+18
+00:00:41,084 --> 00:00:43,879
+No, mankind has been
+at war with the virus from the start.
+
+19
+00:00:43,962 --> 00:00:47,174
+Sometimes, millions of people die,
+as in an actual war.
+
+20
+00:00:47,257 --> 00:00:49,676
+But in the end, we always win.
+
+21
+00:00:49,760 --> 00:00:53,013
+Just to be clear, you do think
+microorganisms pose a threat.
+
+22
+00:00:53,263 --> 00:00:55,057
+Oh, in the most dire terms.
+
+23
+00:00:55,641 --> 00:00:57,184
+- Bacteria.
+- No.
+
+24
+00:00:57,267 --> 00:00:59,061
+- You like saying no.
+- Yes.
+
+25
+00:01:00,646 --> 00:01:02,522
+Not bacteria. Not viruses.
+
+26
+00:01:02,606 --> 00:01:04,399
+- So?
+- Fungus.
+
+27
+00:01:06,276 --> 00:01:08,070
+Yes, that's the usual response.
+
+28
+00:01:08,153 --> 00:01:09,863
+Fungi seem harmless enough.
+
+29
+00:01:09,947 --> 00:01:11,657
+Many species know otherwise.
+
+30
+00:01:11,740 --> 00:01:14,910
+Because there are some fungi
+who seek not to kill,
+
+31
+00:01:15,244 --> 00:01:16,453
+but to control.
+
+32
+00:01:16,536 --> 00:01:19,164
+Let me ask you,
+where do we get LSD from?
+
+33
+00:01:19,248 --> 00:01:21,166
+Where do you get it from?
+
+34
+00:01:21,250 --> 00:01:23,460
+It comes from ergot, a fungus.
+
+35
+00:01:23,543 --> 00:01:25,837
+Psilocybin, also a fungus.
+
+36
+00:01:25,921 --> 00:01:29,800
+Viruses can make us ill,
+but fungi can alter our very minds.
+
+37
+00:01:29,883 --> 00:01:31,927
+There's a fungus that infects insects.
+
+38
+00:01:32,010 --> 00:01:33,887
+Gets inside an ant, for example,
+
+39
+00:01:33,971 --> 00:01:37,182
+travels through its circulatory system
+to the ant's brain,
+
+40
+00:01:37,266 --> 00:01:39,142
+and then floods it with hallucinogens,
+
+41
+00:01:39,226 --> 00:01:42,521
+thus bending the ant's mind to its will.
+
+42
+00:01:42,604 --> 00:01:44,564
+The fungus starts to direct
+the ant's behavior,
+
+43
+00:01:44,648 --> 00:01:46,275
+telling it where to go, what to do,
+
+44
+00:01:46,358 --> 00:01:48,402
+like a puppeteer with a marionette.
+
+45
+00:01:48,860 --> 00:01:49,945
+And it gets worse.
+
+46
+00:01:50,028 --> 00:01:51,405
+The fungus needs food to live,
+
+47
+00:01:51,488 --> 00:01:54,825
+so it begins to devour
+its host from within,
+
+48
+00:01:54,908 --> 00:01:57,411
+replacing the ant's flesh with its own,
+
+49
+00:01:57,494 --> 00:01:59,329
+but it doesn't let its victim die.
+
+50
+00:01:59,413 --> 00:02:04,584
+No, it keeps its puppet alive
+by preventing decomposition.
+
+51
+00:02:05,002 --> 00:02:08,046
+- How? Where do we get penicillin from?
+- Fungus.
+
+52
+00:02:09,840 --> 00:02:11,067
+Dr. Schoenheiss, you're in distress.
+
+53
+00:02:11,091 --> 00:02:14,052
+Fungal infection of this kind is real,
+but not in humans.
+
+54
+00:02:14,136 --> 00:02:16,054
+True, fungi cannot survive
+
+55
+00:02:16,138 --> 00:02:19,891
+if its host's internal temperature
+is over 94 degrees.
+
+56
+00:02:19,975 --> 00:02:22,519
+And currently, there are no reasons
+for fungi to evolve
+
+57
+00:02:22,602 --> 00:02:24,289
+to be able to withstand
+higher temperatures.
+
+58
+00:02:24,313 --> 00:02:25,498
+But what if that were to change?
+
+59
+00:02:25,522 --> 00:02:28,317
+What if, for instance,
+
+60
+00:02:28,400 --> 00:02:30,819
+the world were to get slightly warmer?
+
+61
+00:02:31,445 --> 00:02:34,531
+Well, now there is reason to evolve.
+
+62
+00:02:34,614 --> 00:02:38,869
+One gene mutates and an <i>ascomycete,
+candida,</i> ergot,
+
+63
+00:02:38,952 --> 00:02:41,955
+<i>cordyceps, aspergillus,</i>
+any one of them could become
+
+64
+00:02:42,039 --> 00:02:44,082
+capable of burrowing into our brains
+
+65
+00:02:44,166 --> 00:02:46,543
+and taking control,
+not of millions of us,
+
+66
+00:02:46,626 --> 00:02:47,836
+but billions of us.
+
+67
+00:02:48,378 --> 00:02:51,214
+Billions of puppets with poisoned minds
+
+68
+00:02:51,298 --> 00:02:54,051
+permanently fixed on one unifying goal:
+
+69
+00:02:54,426 --> 00:02:58,597
+to spread the infection
+to every last human alive
+
+70
+00:02:58,680 --> 00:02:59,973
+by any means necessary.
+
+71
+00:03:00,057 --> 00:03:01,534
+And there are no treatments for this.
+
+72
+00:03:01,558 --> 00:03:04,019
+No preventatives, no cures.
+
+73
+00:03:04,102 --> 00:03:06,938
+They don't exist.
+It's not even possible to make them.
+
+74
+00:03:08,482 --> 00:03:09,733
+So, if that happens...
+
+75
+00:03:11,777 --> 00:03:12,861
+We lose.
+
+76
+00:03:17,366 --> 00:03:18,450
+We'll be back.
+
+77
+00:05:00,260 --> 00:05:01,261
+Alarm.
+
+78
+00:05:02,804 --> 00:05:03,930
+Alarm!
+
+79
+00:05:20,447 --> 00:05:22,866
+- Where's the pancake mix?
+- Oh, was I...
+
+80
+00:05:23,241 --> 00:05:24,576
+Yeah, I was. Sorry.
+
+81
+00:05:24,743 --> 00:05:26,411
+I was gonna make you birthday pancakes.
+
+82
+00:05:26,495 --> 00:05:27,746
+I swear.
+
+83
+00:05:27,829 --> 00:05:29,456
+You know I don't really like pancakes.
+
+84
+00:05:29,539 --> 00:05:32,083
+I know you don't like them.
+It was for my benefit.
+
+85
+00:05:36,213 --> 00:05:37,213
+Vitamin C.
+
+86
+00:05:46,056 --> 00:05:47,766
+You get your homework done?
+
+87
+00:05:50,185 --> 00:05:51,186
+Fractions?
+
+88
+00:05:54,231 --> 00:05:56,441
+- How old are you again?
+- Thirty-six.
+
+89
+00:05:57,526 --> 00:06:00,246
+- You're gonna have to wear diapers soon.
+- Who says I don't already?
+
+90
+00:06:03,532 --> 00:06:04,448
+Shell.
+
+91
+00:06:04,449 --> 00:06:05,575
+Calcium.
+
+92
+00:06:06,326 --> 00:06:07,326
+Lovely.
+
+93
+00:06:09,037 --> 00:06:10,306
+Is there enough for Uncle Tommy?
+
+94
+00:06:10,330 --> 00:06:11,706
+Well, there would've been.
+
+95
+00:06:13,667 --> 00:06:14,583
+Hey.
+
+96
+00:06:14,584 --> 00:06:15,984
+You're still alive, you old fucker.
+
+97
+00:06:16,336 --> 00:06:17,629
+Aw. He loves you.
+
+98
+00:06:17,712 --> 00:06:19,589
+He's dependent on me. Not the same.
+
+99
+00:06:20,090 --> 00:06:21,132
+I think it's the same.
+
+100
+00:06:21,216 --> 00:06:23,552
+It's definitely the same.
+I thought we was having pancakes.
+
+101
+00:06:24,469 --> 00:06:25,780
+We'll pick you somethin' up on the road.
+
+102
+00:06:25,804 --> 00:06:28,014
+- Concrete guys gonna be there?
+- Yeah, they said maybe.
+
+103
+00:06:28,098 --> 00:06:31,184
+Maybe? We can't frame until we pour.
+We're not getting paid until we frame.
+
+104
+00:06:31,268 --> 00:06:33,454
+Well, we could bring someone else on,
+get the job done faster.
+
+105
+00:06:33,478 --> 00:06:36,198
+No, no. I'm not splitting this job.
+I barely wanna split it with you.
+
+106
+00:06:36,815 --> 00:06:37,816
+We could work a double.
+
+107
+00:06:38,191 --> 00:06:40,694
+- Literally? Today?
+- I know. I'll be done by 9:00.
+
+108
+00:06:40,777 --> 00:06:42,112
+By 9:00, right?
+
+109
+00:06:42,821 --> 00:06:43,821
+Yeah.
+
+110
+00:06:45,073 --> 00:06:46,241
+I'll bring back a cake.
+
+111
+00:06:46,866 --> 00:06:47,866
+I promise.
+
+112
+00:06:50,495 --> 00:06:52,831
+...<i>continued
+disturbances in Jakarta,</i>
+
+113
+00:06:52,914 --> 00:06:54,249
+<i>but are advising US citizens...</i>
+
+114
+00:06:54,332 --> 00:06:56,376
+Jakarta. Where is that, Middle East?
+
+115
+00:06:56,459 --> 00:06:58,437
+It doesn't ring a bell.
+It's definitely a country.
+
+116
+00:06:58,461 --> 00:07:00,672
+- Or maybe part of Asia?
+- Jakarta isn't a country.
+
+117
+00:07:00,755 --> 00:07:03,425
+Being a part of Asia isn't
+mutually exclusive with being a country,
+
+118
+00:07:03,508 --> 00:07:05,427
+and in fact,
+it's the capital of Indonesia.
+
+119
+00:07:05,927 --> 00:07:08,013
+Shit. Hope for us yet.
+
+120
+00:07:14,853 --> 00:07:15,853
+All right.
+
+121
+00:07:16,646 --> 00:07:18,315
+Finish up quick, we'll drop you off.
+
+122
+00:07:18,398 --> 00:07:20,984
+- I'm still eating my eggshells.
+- You got seven minutes.
+
+123
+00:07:21,067 --> 00:07:22,777
+Your t-shirt's inside out.
+
+124
+00:07:26,114 --> 00:07:27,449
+Shit.
+
+125
+00:07:29,993 --> 00:07:30,993
+He's losing it.
+
+126
+00:08:12,243 --> 00:08:14,329
+Sarah!
+
+127
+00:08:20,502 --> 00:08:21,586
+Hey, neighbor!
+
+128
+00:08:22,295 --> 00:08:23,296
+Oh, hi.
+
+129
+00:08:23,880 --> 00:08:27,717
+Connie was asking after you,
+since you haven't been over in a while.
+
+130
+00:08:28,009 --> 00:08:29,177
+You make 'em happy.
+
+131
+00:08:30,595 --> 00:08:33,890
+I could come by after school,
+but just for, like, a little bit.
+
+132
+00:08:33,973 --> 00:08:35,266
+She'll take whatcha got.
+
+133
+00:08:35,684 --> 00:08:37,894
+Y'all can bake or whatever.
+
+134
+00:08:38,311 --> 00:08:39,437
+Speaking of,
+
+135
+00:08:39,979 --> 00:08:41,564
+we got a lot of extra here.
+
+136
+00:08:41,648 --> 00:08:43,149
+Y'all want some biscuits?
+
+137
+00:08:43,900 --> 00:08:45,694
+Dad, you love biscuits.
+
+138
+00:08:50,240 --> 00:08:51,533
+I do.
+
+139
+00:08:51,616 --> 00:08:52,951
+But I'm on Atkins.
+
+140
+00:08:53,493 --> 00:08:56,121
+- On what now?
+- It's a... You know what?
+
+141
+00:08:56,204 --> 00:08:57,872
+We gotta run, but Sarah'll be by later.
+
+142
+00:08:57,956 --> 00:08:59,582
+She'll stay as long as you want,
+
+143
+00:09:00,417 --> 00:09:01,918
+tell you all about Atkins.
+
+144
+00:09:02,001 --> 00:09:04,003
+Great! I'll let Connie know.
+
+145
+00:09:04,713 --> 00:09:05,713
+Solid.
+
+146
+00:09:09,134 --> 00:09:11,946
+Can't tell you how exciting it was
+listening to that fucking conversation.
+
+147
+00:09:11,970 --> 00:09:12,971
+Put that out.
+
+148
+00:09:14,389 --> 00:09:15,724
+Happy birthday to you.
+
+149
+00:09:26,025 --> 00:09:29,195
+I want you to write this diagram out
+exactly as I have it.
+
+150
+00:09:29,279 --> 00:09:31,906
+Always subject and predicate,
+
+151
+00:09:31,990 --> 00:09:33,658
+verb and noun.
+
+152
+00:09:34,159 --> 00:09:37,370
+Okay? The sentence is,
+"Where are you going?" Subject is "You".
+
+153
+00:09:37,829 --> 00:09:39,330
+"You are going",
+
+154
+00:09:40,165 --> 00:09:41,624
+predicate.
+
+155
+00:09:41,708 --> 00:09:43,251
+"Where", adverb.
+
+156
+00:09:43,501 --> 00:09:45,879
+You see it? Okay.
+I have some nods, shaking of heads.
+
+157
+00:09:45,962 --> 00:09:47,922
+I swear you will use this later in life.
+
+158
+00:09:48,006 --> 00:09:49,799
+Believe me, that's why you're here.
+
+159
+00:09:49,883 --> 00:09:51,009
+Okay? So...
+
+160
+00:09:57,515 --> 00:09:59,235
+Yes, you need
+to know this!
+
+161
+00:09:59,267 --> 00:10:01,227
+Yes, it's on your test next week!
+
+162
+00:10:01,978 --> 00:10:05,523
+Homework is due end of class tomorrow!
+
+163
+00:11:00,119 --> 00:11:01,119
+Twenty.
+
+164
+00:11:01,579 --> 00:11:02,579
+That's it?
+
+165
+00:11:02,831 --> 00:11:03,957
+Okay, 30.
+
+166
+00:11:05,124 --> 00:11:06,167
+Twenty's good.
+
+167
+00:11:06,251 --> 00:11:08,461
+It's a spring. I'll do it right now.
+
+168
+00:11:27,897 --> 00:11:30,066
+All day. I swear.
+
+169
+00:11:33,152 --> 00:11:34,152
+We're closing.
+
+170
+00:11:35,989 --> 00:11:37,240
+We're done for today.
+
+171
+00:11:37,323 --> 00:11:38,908
+It's 3:15, we close at 7:00.
+
+172
+00:11:42,370 --> 00:11:44,873
+- I'm very sorry. He cannot finish.
+- I'm already finished.
+
+173
+00:11:48,877 --> 00:11:50,169
+You should go home.
+
+174
+00:12:09,480 --> 00:12:11,649
+- There you are, sweetie.
+- Sorry.
+
+175
+00:12:11,733 --> 00:12:13,026
+I was getting worried.
+
+176
+00:12:13,109 --> 00:12:14,903
+I was getting something for my dad.
+
+177
+00:12:15,695 --> 00:12:16,738
+Hi, Mercy.
+
+178
+00:12:18,948 --> 00:12:22,243
+Hey, is everything okay?
+Like, on the news?
+
+179
+00:12:22,660 --> 00:12:23,703
+Like what, hon?
+
+180
+00:12:24,329 --> 00:12:27,540
+Well, no, there was just a lot of police
+and stuff on the road today.
+
+181
+00:12:27,916 --> 00:12:29,459
+Well, that's true every day, isn't it?
+
+182
+00:12:29,876 --> 00:12:32,128
+People out there need
+to get right with Jesus.
+
+183
+00:12:32,211 --> 00:12:36,299
+Three nails plus one cross
+equals four-given.
+
+184
+00:12:37,467 --> 00:12:39,427
+I was thinking we'd make some cookies.
+
+185
+00:12:39,510 --> 00:12:40,678
+Chocolate chip?
+
+186
+00:12:41,262 --> 00:12:42,262
+Raisin.
+
+187
+00:12:51,022 --> 00:12:53,191
+Come on, Mama. It's green.
+
+188
+00:12:53,274 --> 00:12:54,754
+You love that.
+
+189
+00:12:55,401 --> 00:12:56,653
+Here we go!
+
+190
+00:12:58,154 --> 00:12:59,739
+I don't know why I talk to her.
+
+191
+00:12:59,822 --> 00:13:01,366
+She's completely deaf.
+
+192
+00:13:30,478 --> 00:13:31,562
+Wanna give me a hand?
+
+193
+00:13:31,646 --> 00:13:32,855
+Be right there!
+
+194
+00:13:55,128 --> 00:13:56,462
+Hey, Mrs. Adler?
+
+195
+00:13:56,546 --> 00:13:58,089
+Could I borrow this?
+
+196
+00:14:00,842 --> 00:14:02,385
+Yeah, sure.
+
+197
+00:14:02,844 --> 00:14:04,053
+It's one of Danny's.
+
+198
+00:14:05,346 --> 00:14:07,265
+You know what?
+My dad's gonna be back real soon.
+
+199
+00:14:07,348 --> 00:14:09,058
+- I should go.
+- You sure?
+
+200
+00:14:09,142 --> 00:14:11,561
+- Yeah.
+- Well, then you're taking some cookies.
+
+201
+00:15:00,777 --> 00:15:03,088
+<i>No comment today
+from the Austin Police Department</i>
+
+202
+00:15:03,112 --> 00:15:06,199
+<i>regarding a rash of violent incidents
+across the city,</i>
+
+203
+00:15:06,282 --> 00:15:09,535
+<i>some suggesting a new street drug
+may be to blame.</i>
+
+204
+00:15:09,619 --> 00:15:13,164
+<i>More on that when we return,
+with Manuela Sanchez reporting live...</i>
+
+205
+00:15:20,546 --> 00:15:22,048
+You locked the door for once.
+
+206
+00:15:22,715 --> 00:15:24,717
+- Good job.
+- Yeah.
+
+207
+00:15:30,139 --> 00:15:31,516
+- It's 10:00.
+- I know.
+
+208
+00:15:32,016 --> 00:15:35,061
+They gave us the wrong size
+for the headers.
+
+209
+00:15:36,479 --> 00:15:38,314
+That doesn't mean anything to you.
+I'm sorry.
+
+210
+00:15:39,315 --> 00:15:40,315
+Where's the cake?
+
+211
+00:15:41,234 --> 00:15:43,194
+- Shit.
+- Come on, man.
+
+212
+00:15:43,277 --> 00:15:44,557
+I'll get us one tomorrow.
+
+213
+00:15:44,821 --> 00:15:47,657
+Swear? Or you don't get your present.
+
+214
+00:15:47,740 --> 00:15:49,992
+- You got me a present?
+- Swear.
+
+215
+00:15:50,827 --> 00:15:51,828
+On my life.
+
+216
+00:15:59,544 --> 00:16:00,545
+Wow.
+
+217
+00:16:04,674 --> 00:16:05,674
+Fixed it for you.
+
+218
+00:16:13,349 --> 00:16:14,642
+- Did you?
+- What?
+
+219
+00:16:14,725 --> 00:16:15,852
+I don't hear anything.
+
+220
+00:16:17,311 --> 00:16:18,311
+That was lame.
+
+221
+00:16:18,354 --> 00:16:20,189
+- You're lame.
+- Yeah, I know.
+
+222
+00:16:21,691 --> 00:16:23,109
+Where'd you get the money for this?
+
+223
+00:16:23,693 --> 00:16:25,528
+Drugs. I sell hardcore drugs.
+
+224
+00:16:25,611 --> 00:16:26,696
+It's better than what I do.
+
+225
+00:16:26,779 --> 00:16:29,115
+It was only $20, which I stole from you.
+
+226
+00:16:30,616 --> 00:16:31,826
+I could've stolen $60,
+
+227
+00:16:31,909 --> 00:16:33,804
+but I put the change back
+because I'm an honest thief.
+
+228
+00:16:33,828 --> 00:16:35,955
+- Hmm.
+- Besides, it's the thought that counts.
+
+229
+00:16:36,330 --> 00:16:38,249
+And you were never gonna
+do it for yourself, so.
+
+230
+00:16:43,713 --> 00:16:44,713
+Thank you.
+
+231
+00:16:47,550 --> 00:16:48,550
+There's one more.
+
+232
+00:16:50,970 --> 00:16:52,763
+Borrowed it from the Adlers.
+
+233
+00:16:52,847 --> 00:16:54,891
+Oh, this is the one
+with the deleted scenes.
+
+234
+00:16:54,974 --> 00:16:57,018
+Yeah, imagine how bad those have to be.
+
+235
+00:16:57,101 --> 00:16:59,187
+Come on, pop it in.
+While it's still your birthday.
+
+236
+00:17:08,988 --> 00:17:10,823
+- Don't fall asleep.
+- 'Course, I won't.
+
+237
+00:17:11,073 --> 00:17:12,953
+It's too riveting.
+
+238
+00:17:34,722 --> 00:17:35,638
+Hello?
+
+239
+00:17:35,640 --> 00:17:37,058
+<i>Joel, it's me.</i>
+
+240
+00:17:37,141 --> 00:17:38,267
+<i>I'm okay.</i>
+
+241
+00:17:39,227 --> 00:17:40,895
+- Yeah?
+<i>- But I'm in jail.</i>
+
+242
+00:17:42,230 --> 00:17:44,523
+- God damn it.
+<i>- Wasn't my fault this time.</i>
+
+243
+00:17:44,607 --> 00:17:47,485
+<i>I was at the bar, some guy goes crazy,
+starts swinging at a waitress,</i>
+
+244
+00:17:47,568 --> 00:17:49,368
+<i>I stepped in, knocked him out,
+cops show up...</i>
+
+245
+00:17:49,403 --> 00:17:50,780
+<i>Look, it doesn't fucking matter.</i>
+
+246
+00:17:50,863 --> 00:17:52,281
+<i>- You gotta bail me out.</i>
+- Now?
+
+247
+00:17:52,365 --> 00:17:53,842
+<i>It's Friday,
+you don't get me out tonight,</i>
+
+248
+00:17:53,866 --> 00:17:54,909
+<i>I'm in here all weekend.</i>
+
+249
+00:17:55,409 --> 00:17:56,994
+<i>It's a fucking madhouse, Joel.</i>
+
+250
+00:17:57,078 --> 00:17:59,580
+<i>- I gotta get out.</i>
+- Which jail? Travis County?
+
+251
+00:17:59,664 --> 00:18:00,915
+<i>Yeah, on 10th.</i>
+
+252
+00:18:00,998 --> 00:18:03,542
+- God damn it, Tommy.
+<i>- I'm sorry.</i>
+
+253
+00:18:05,628 --> 00:18:06,629
+<i>Please.</i>
+
+254
+00:18:07,922 --> 00:18:08,922
+Okay.
+
+255
+00:18:09,340 --> 00:18:10,466
+Fucking idiot.
+
+256
+00:19:13,321 --> 00:19:14,321
+Dad?
+
+257
+00:19:23,622 --> 00:19:24,622
+Dad?
+
+258
+00:19:43,559 --> 00:19:46,687
+<i>Law enforcement
+and emergency services are in the area</i>
+
+259
+00:19:46,771 --> 00:19:49,023
+<i>and will be in contact
+with further instructions.</i>
+
+260
+00:19:51,192 --> 00:19:53,402
+<i>Stay indoors. Law enforcement...</i>
+
+261
+00:20:00,618 --> 00:20:02,328
+Easy. Easy, Mercy.
+
+262
+00:20:03,496 --> 00:20:04,830
+What are you doing out here, boy?
+
+263
+00:20:33,109 --> 00:20:35,029
+Come on, let's get you home.
+
+264
+00:20:38,280 --> 00:20:39,698
+Come on, Mercy. Please.
+
+265
+00:20:40,825 --> 00:20:41,867
+Mercy!
+
+266
+00:20:53,129 --> 00:20:54,255
+Mrs. Adler?
+
+267
+00:21:15,025 --> 00:21:16,318
+Mrs. Adler?
+
+268
+00:21:46,140 --> 00:21:47,391
+Mrs. Adler?
+
+269
+00:22:02,072 --> 00:22:03,072
+Help me.
+
+270
+00:22:53,415 --> 00:22:55,709
+Get in the truck! Right now!
+
+271
+00:22:56,252 --> 00:22:57,628
+Move!
+
+272
+00:23:09,139 --> 00:23:10,182
+What are we doing, Joel?
+
+273
+00:23:26,532 --> 00:23:28,826
+- You killed her.
+- Baby, I'm sorry.
+
+274
+00:23:28,909 --> 00:23:30,703
+- Joel, we gotta go.
+- Sarah, listen to me.
+
+275
+00:23:31,078 --> 00:23:32,496
+It's not just the Adlers.
+
+276
+00:23:32,580 --> 00:23:33,664
+But we're gonna be brave,
+
+277
+00:23:33,747 --> 00:23:35,587
+and we're gonna get outta this.
+
+278
+00:23:36,125 --> 00:23:37,668
+Hey. Let's go. Come on.
+
+279
+00:23:38,669 --> 00:23:39,670
+Get in.
+
+280
+00:23:41,505 --> 00:23:42,506
+Joel?
+
+281
+00:23:42,965 --> 00:23:44,717
+Denise, you get back inside the house!
+
+282
+00:23:44,800 --> 00:23:47,886
+- You lock your doors! Now!
+- Come on, get in!
+
+283
+00:23:57,062 --> 00:23:58,647
+- Get your seat belt on.
+- Hold on.
+
+284
+00:24:02,526 --> 00:24:04,153
+Jesus Christ, Joel!
+
+285
+00:24:08,532 --> 00:24:10,326
+- You take 71.
+- 71, I know.
+
+286
+00:24:19,543 --> 00:24:20,586
+- Daddy...
+- We don't know.
+
+287
+00:24:20,669 --> 00:24:23,088
+They're saying it's a virus.
+Some kind of parasite.
+
+288
+00:24:23,422 --> 00:24:24,715
+Is it from terrorists?
+
+289
+00:24:24,798 --> 00:24:26,884
+We don't know.
+
+290
+00:24:27,509 --> 00:24:29,678
+- Are we sick?
+- No. Of course not.
+
+291
+00:24:29,803 --> 00:24:30,971
+Why did things blow up?
+
+292
+00:24:31,180 --> 00:24:32,681
+No cellphone, no radio.
+
+293
+00:24:33,349 --> 00:24:34,868
+A minute ago, newsman wouldn't shut up.
+
+294
+00:24:34,892 --> 00:24:36,492
+- How do you know?
+- What?
+
+295
+00:24:36,810 --> 00:24:38,050
+How do you know we're not sick?
+
+296
+00:24:39,104 --> 00:24:41,224
+They're saying
+it's mostly people in the city.
+
+297
+00:24:41,649 --> 00:24:43,400
+That's why they got
+the highway blocked off.
+
+298
+00:24:47,112 --> 00:24:48,112
+God.
+
+299
+00:24:48,656 --> 00:24:49,740
+That's Jimmy's place.
+
+300
+00:24:59,583 --> 00:25:01,377
+The Adlers would take Nana into the city
+
+301
+00:25:02,002 --> 00:25:03,337
+to the hospital for stuff.
+
+302
+00:25:03,796 --> 00:25:06,173
+That's right. They would.
+That's probably why.
+
+303
+00:25:09,093 --> 00:25:12,638
+But, you'd have to go a lot, right?
+
+304
+00:25:13,138 --> 00:25:14,306
+We're fine. Trust me.
+
+305
+00:25:18,268 --> 00:25:19,269
+All right.
+
+306
+00:25:25,025 --> 00:25:26,276
+Here! Right here!
+
+307
+00:25:26,694 --> 00:25:28,153
+- Hey!
+- What are you doing?
+
+308
+00:25:28,237 --> 00:25:30,364
+- They got a kid, Joel.
+- So do we. Keep driving.
+
+309
+00:25:30,447 --> 00:25:32,807
+- Please, no! No, no!
+- We could put them in the back.
+
+310
+00:25:36,453 --> 00:25:37,830
+Somebody else will come along.
+
+311
+00:25:48,966 --> 00:25:51,176
+Fuck! Everybody had
+the same fucking idea.
+
+312
+00:25:52,553 --> 00:25:55,431
+- I can't get through this.
+- All right. Let's think it through.
+
+313
+00:25:55,514 --> 00:25:56,866
+- Fuck!
+- All right, take the field.
+
+314
+00:25:56,890 --> 00:25:58,767
+We cut across
+and we pick up on the west side.
+
+315
+00:25:58,851 --> 00:26:00,561
+Yeah, yeah.
+West, west, all right.
+
+316
+00:26:00,644 --> 00:26:01,645
+All right, hang on.
+
+317
+00:26:15,200 --> 00:26:17,411
+Shit! Fucking Army.
+
+318
+00:26:17,494 --> 00:26:19,374
+- Isn't that good?
+- It's good for them,
+
+319
+00:26:19,455 --> 00:26:21,415
+but that's the highway
+we're trying to get to.
+
+320
+00:26:21,498 --> 00:26:22,809
+All right, keep moving.
+Head north.
+
+321
+00:26:22,833 --> 00:26:24,769
+- Could be a lot of people.
+- Well, we can't go south,
+
+322
+00:26:24,793 --> 00:26:27,313
+we can't go east, we can't go west.
+Hell else we supposed to go?
+
+323
+00:26:28,922 --> 00:26:29,922
+Tommy, come on!
+
+324
+00:26:37,055 --> 00:26:38,056
+Yeah, I know that place.
+
+325
+00:26:38,140 --> 00:26:39,659
+- This can work.
+- Yeah, but then what?
+
+326
+00:26:39,683 --> 00:26:41,518
+I don't know. Mexico. Just far.
+
+327
+00:26:41,602 --> 00:26:44,897
+- Far as we can. How much gas?
+- Three-quarter tank.
+
+328
+00:26:45,481 --> 00:26:47,801
+Go through town, golf course
+by the river, straight across,
+
+329
+00:26:48,192 --> 00:26:50,569
+we pick up the highway
+on the other side of the blockade,
+
+330
+00:26:50,694 --> 00:26:51,694
+then we're out.
+
+331
+00:27:00,412 --> 00:27:01,413
+Maybe it's everywhere.
+
+332
+00:27:04,041 --> 00:27:05,167
+Maybe there's nowhere to go.
+
+333
+00:27:10,923 --> 00:27:12,341
+What the fuck?
+
+334
+00:27:25,020 --> 00:27:26,855
+Son of a bitch. Gotta go around.
+
+335
+00:27:27,189 --> 00:27:28,190
+Grab something!
+
+336
+00:27:43,789 --> 00:27:45,499
+All right, keep going, keep going.
+
+337
+00:27:45,582 --> 00:27:46,750
+Shit. Tommy!
+
+338
+00:27:51,046 --> 00:27:52,214
+Tommy, you can't stop here.
+
+339
+00:27:52,881 --> 00:27:54,359
+- I can't drive through 'em all.
+- Are you serious?
+
+340
+00:27:54,383 --> 00:27:55,384
+Just keep going!
+
+341
+00:28:00,764 --> 00:28:02,182
+Go, go, go. Back, back,
+
+342
+00:28:02,266 --> 00:28:03,934
+- back, back!
+- I'm trying!
+
+343
+00:28:08,647 --> 00:28:10,065
+Tommy, go faster! We gotta go!
+
+344
+00:28:10,148 --> 00:28:11,501
+I'm trying!
+There's nowhere to fucking go!
+
+345
+00:28:11,525 --> 00:28:12,794
+- Find an alley!
+- What alley?
+
+346
+00:28:12,818 --> 00:28:14,546
+- There's people everywhere!
+- Roll the fuck over them!
+
+347
+00:28:14,570 --> 00:28:15,988
+We gotta get off this street now!
+
+348
+00:28:16,071 --> 00:28:17,340
+That's what I'm trying to do, Joel.
+
+349
+00:28:17,364 --> 00:28:19,164
+We're gonna be okay.
+Just keep driving.
+
+350
+00:28:19,241 --> 00:28:20,242
+Dad?
+
+351
+00:28:21,285 --> 00:28:22,327
+Holy shit!
+
+352
+00:28:23,328 --> 00:28:25,497
+Move. Move!
+
+353
+00:28:57,738 --> 00:28:59,823
+Sarah, Sarah.
+
+354
+00:28:59,907 --> 00:29:01,241
+Stay right there. Don't move.
+
+355
+00:29:02,618 --> 00:29:03,952
+Tommy, you okay?
+
+356
+00:29:04,036 --> 00:29:04,952
+Yeah, okay.
+
+357
+00:29:19,134 --> 00:29:20,719
+Sarah, don't look.
+
+358
+00:29:21,428 --> 00:29:23,263
+You look at me, okay?
+
+359
+00:29:23,347 --> 00:29:25,267
+I'm sorry, baby, I know, I know.
+
+360
+00:29:25,307 --> 00:29:26,576
+Come here. Put your arms around me.
+
+361
+00:29:26,600 --> 00:29:27,768
+Come here, come here.
+
+362
+00:29:28,644 --> 00:29:30,854
+I got you. I got you.
+
+363
+00:29:31,480 --> 00:29:32,480
+Got you.
+
+364
+00:29:34,942 --> 00:29:37,027
+Are you okay? Are you okay?
+
+365
+00:29:37,110 --> 00:29:38,695
+- My ankle.
+- All right, okay.
+
+366
+00:29:38,779 --> 00:29:41,019
+We gotta get off the street! Shit!
+
+367
+00:29:45,285 --> 00:29:46,285
+Tommy?
+
+368
+00:29:47,162 --> 00:29:48,246
+Tommy!
+
+369
+00:29:48,830 --> 00:29:49,831
+Tommy!
+
+370
+00:29:51,583 --> 00:29:53,460
+Head to the river! I'll find a way.
+
+371
+00:29:54,503 --> 00:29:55,663
+Get her outta here, Joel! Go!
+
+372
+00:29:57,798 --> 00:29:59,275
+- We can't leave him.
+- He'll be fine.
+
+373
+00:29:59,299 --> 00:30:00,509
+- Can you run?
+- No.
+
+374
+00:30:02,219 --> 00:30:03,579
+- You keep your eyes on me.
+- Okay.
+
+375
+00:30:03,637 --> 00:30:04,553
+- Okay?
+- Okay.
+
+376
+00:30:04,554 --> 00:30:05,764
+And don't look anywhere else.
+
+377
+00:30:06,473 --> 00:30:07,473
+All right.
+
+378
+00:31:05,866 --> 00:31:07,743
+It's okay, baby. You're safe.
+
+379
+00:31:08,452 --> 00:31:09,453
+Don't move!
+
+380
+00:31:11,455 --> 00:31:14,041
+- My daughter's hurt her ankle.
+- Stop right there!
+
+381
+00:31:15,542 --> 00:31:16,543
+Okay.
+
+382
+00:31:17,294 --> 00:31:19,713
+Easy now. We're not sick!
+
+383
+00:31:20,297 --> 00:31:22,966
+I've got two civilians by the river,
+one of them injured.
+
+384
+00:31:24,509 --> 00:31:25,510
+Ankle.
+
+385
+00:31:26,553 --> 00:31:27,846
+What about Uncle Tommy?
+
+386
+00:31:28,430 --> 00:31:30,223
+We're gonna get you
+somewhere safe first.
+
+387
+00:31:30,307 --> 00:31:31,987
+- Then we'll go back for him, okay?
+- Okay.
+
+388
+00:31:32,225 --> 00:31:33,727
+- Okay.
+- I'm sorry, repeat?
+
+389
+00:31:33,935 --> 00:31:35,729
+Hey. No one told you to move.
+
+390
+00:31:37,773 --> 00:31:38,773
+Yes, sir.
+
+391
+00:31:40,567 --> 00:31:41,967
+Yes, sir.
+
+392
+00:31:44,654 --> 00:31:45,697
+Yes, sir.
+
+393
+00:31:50,410 --> 00:31:51,536
+We're not sick.
+
+394
+00:31:54,372 --> 00:31:55,457
+Sir,
+
+395
+00:31:56,291 --> 00:31:58,001
+we are not sick!
+
+396
+00:32:11,014 --> 00:32:12,014
+I'm sorry.
+
+397
+00:32:13,475 --> 00:32:14,643
+Please, don't.
+
+398
+00:32:24,486 --> 00:32:25,737
+Oh, God.
+
+399
+00:32:31,326 --> 00:32:32,494
+No.
+
+400
+00:32:32,786 --> 00:32:34,621
+No, no. No.
+
+401
+00:32:35,747 --> 00:32:37,582
+Okay. You're okay.
+
+402
+00:32:38,166 --> 00:32:39,960
+You're okay. Move your hand, baby.
+
+403
+00:32:40,043 --> 00:32:41,086
+Move your hand.
+
+404
+00:32:47,801 --> 00:32:49,886
+I know, baby, I know,
+I know, I know, I know.
+
+405
+00:32:49,970 --> 00:32:51,096
+I know it hurts.
+
+406
+00:32:51,847 --> 00:32:54,349
+Come on, come on, come on, come on.
+
+407
+00:32:54,432 --> 00:32:57,018
+Come on, baby. You're okay, you're okay.
+
+408
+00:32:57,561 --> 00:33:00,939
+I know, I know, I know, I know, baby,
+I know, I know. I know this hurts.
+
+409
+00:33:01,606 --> 00:33:02,774
+You're gonna be okay.
+
+410
+00:33:02,858 --> 00:33:06,528
+All right. Baby, baby, listen to me.
+
+411
+00:33:06,611 --> 00:33:08,613
+I gotta get you up, okay?
+
+412
+00:33:08,697 --> 00:33:09,697
+I gotta get you up.
+
+413
+00:33:10,198 --> 00:33:12,117
+All right? Come on.
+
+414
+00:33:12,200 --> 00:33:14,077
+You come on. I know, baby.
+
+415
+00:33:14,411 --> 00:33:16,997
+No, no. I know, I know, I know,
+I know, I know, I know.
+
+416
+00:33:17,080 --> 00:33:18,080
+Tommy, help me!
+
+417
+00:33:19,583 --> 00:33:20,584
+Joel.
+
+418
+00:33:22,002 --> 00:33:23,086
+Come on, baby girl.
+
+419
+00:33:23,170 --> 00:33:24,963
+Come on, baby girl. I gotta get you up.
+
+420
+00:33:25,046 --> 00:33:26,173
+Come on.
+
+421
+00:33:26,256 --> 00:33:27,382
+Come on, we'll get up.
+
+422
+00:33:27,465 --> 00:33:29,785
+Come on, baby girl.
+
+423
+00:33:30,218 --> 00:33:32,929
+Come on, come on, please.
+
+424
+00:36:18,428 --> 00:36:20,108
+We don't want you
+falling out of the chair.
+
+425
+00:36:21,222 --> 00:36:22,265
+What's your name?
+
+426
+00:36:24,517 --> 00:36:25,810
+Are you alone?
+
+427
+00:36:31,941 --> 00:36:33,193
+And...
+
+428
+00:36:34,235 --> 00:36:35,904
+how did you get this?
+
+429
+00:36:39,449 --> 00:36:42,160
+It's gonna be
+a little tickle right here.
+
+430
+00:36:51,753 --> 00:36:54,172
+What if I told you
+that after we gave you some medicine,
+
+431
+00:36:54,714 --> 00:36:56,591
+we're gonna find you
+your favorite food to eat?
+
+432
+00:36:57,133 --> 00:36:58,218
+Would you like that?
+
+433
+00:36:59,386 --> 00:37:02,222
+And then we'll get you
+some new clothes and toys,
+
+434
+00:37:02,972 --> 00:37:04,682
+as many as you wanna play with.
+
+435
+00:37:09,521 --> 00:37:10,939
+It's just a little needle.
+
+436
+00:37:12,774 --> 00:37:14,109
+It's okay.
+
+437
+00:37:18,947 --> 00:37:19,989
+You're safe.
+
+438
+00:38:24,804 --> 00:38:25,804
+I can't.
+
+439
+00:39:05,803 --> 00:39:06,803
+Ten.
+
+440
+00:39:17,815 --> 00:39:20,652
+- You got anything else?
+- Nothing today.
+
+441
+00:39:20,735 --> 00:39:24,864
+Tomorrow, we got street sweeping,
+or sewer maintenance.
+
+442
+00:39:25,365 --> 00:39:26,533
+Which pays more?
+
+443
+00:39:27,116 --> 00:39:28,618
+That'd be the one with the shit.
+
+444
+00:39:33,456 --> 00:39:34,874
+Late crew. 4:00 p.m. start.
+
+445
+00:40:11,869 --> 00:40:15,206
+...<i>violation
+of EMC 342.3,</i>
+
+446
+00:40:15,290 --> 00:40:17,709
+<i>unauthorized exit
+from a Quarantine Zone.</i>
+
+447
+00:40:18,334 --> 00:40:23,298
+<i>Maria Elisiano, violation of EMC 342.7,</i>
+
+448
+00:40:23,381 --> 00:40:26,426
+<i>unauthorized entry
+into a Quarantine Zone.</i>
+
+449
+00:40:26,509 --> 00:40:29,429
+<i>Each of you have been tried
+in a military court ofjustice,</i>
+
+450
+00:40:29,512 --> 00:40:33,600
+<i>and each of you having been found guilty
+by the court martial panel,</i>
+
+451
+00:40:33,683 --> 00:40:35,685
+<i>and with a sentence of death
+by execution,</i>
+
+452
+00:40:35,768 --> 00:40:40,023
+<i>as empowered under the EMPA,
+Article 1, Section 5...</i>
+
+453
+00:40:55,538 --> 00:40:56,538
+Come on.
+
+454
+00:41:02,670 --> 00:41:05,715
+- Or I could just shoot you.
+- Yeah, but then what would you do?
+
+455
+00:41:07,759 --> 00:41:09,010
+You're short five.
+
+456
+00:41:29,614 --> 00:41:31,407
+- Oxy?
+- Hydro.
+
+457
+00:41:32,408 --> 00:41:33,785
+- How old?
+- Three months.
+
+458
+00:41:33,868 --> 00:41:35,763
+- From Atlanta?
+- I don't know where he gets 'em from.
+
+459
+00:41:35,787 --> 00:41:38,227
+- I just know they're real.
+- If it's real, it's from Atlanta.
+
+460
+00:41:38,498 --> 00:41:40,541
+FEDRA's got a factory
+down there in the QZ.
+
+461
+00:41:40,625 --> 00:41:42,877
+Supposedly only makes two things.
+
+462
+00:41:44,671 --> 00:41:46,714
+Pills and bullets, bullets and pills.
+
+463
+00:41:46,798 --> 00:41:49,151
+Well, the more you shoot people,
+the harder it is to sleep, I guess.
+
+464
+00:41:49,175 --> 00:41:51,219
+Oh, you guess?
+
+465
+00:41:52,512 --> 00:41:53,513
+You want 'em or not?
+
+466
+00:41:58,935 --> 00:42:00,478
+I need the bag back.
+
+467
+00:42:05,191 --> 00:42:07,031
+- How are we doing with the vehicle?
+- All set.
+
+468
+00:42:07,110 --> 00:42:08,986
+Had to get one last guy in the depot
+to buy in.
+
+469
+00:42:09,696 --> 00:42:10,863
+Okay, how much?
+
+470
+00:42:10,947 --> 00:42:14,325
+Four of them on that shift plus me,
+600 total.
+
+471
+00:42:15,576 --> 00:42:18,079
+Look, those trucks are shitheaped
+for a reason.
+
+472
+00:42:18,162 --> 00:42:20,206
+And they don't have
+any batteries. I know.
+
+473
+00:42:20,289 --> 00:42:23,584
+I can see about 200 for the other guys,
+200 for you.
+
+474
+00:42:26,045 --> 00:42:27,045
+Deal.
+
+475
+00:42:28,589 --> 00:42:30,508
+Hey. Do yourself a favor,
+
+476
+00:42:31,467 --> 00:42:33,227
+stay off the streets
+for the next few nights.
+
+477
+00:42:33,720 --> 00:42:35,847
+Fucking Fireflies been
+blowing shit up all week.
+
+478
+00:42:36,389 --> 00:42:37,866
+Two of our guys got shot this morning.
+
+479
+00:42:37,890 --> 00:42:41,144
+Boss has got us working doubles.
+Guys are jumpy and tired.
+
+480
+00:42:42,520 --> 00:42:44,188
+It's easy to make a mistake in the dark.
+
+481
+00:42:47,400 --> 00:42:48,526
+Stay safe.
+
+482
+00:42:49,318 --> 00:42:50,653
+Yeah, you too.
+
+483
+00:43:11,716 --> 00:43:13,396
+What do you want me
+to say, Tess?
+
+484
+00:43:14,177 --> 00:43:16,304
+I'm not asking you
+to say anything.
+
+485
+00:43:18,181 --> 00:43:19,223
+Sure.
+
+
+
+
+
 

@@ -95,6 +95,7 @@ namespace Translater
             Console.WriteLine(srtText);
             string textForTranslate = GetTextFromSRTFile(srtFile);
 
+            //List<string> listForTranslate = GetTextList(textForTranslate);
 
             string translatedText = translate(textForTranslate, languageFrom, languageTo);
             Console.WriteLine("Перевод:");
@@ -106,15 +107,55 @@ namespace Translater
             WriteSRTFile(newSrtFile);
         }
 
+
+        public static List<string> GetTextList(string textForTranslate)
+        {
+            List<string> textList = new List<string>();
+            if (textForTranslate.Length >= 10000) 
+            { 
+                for (int i = 0; i < textForTranslate.Length; i += 10000)
+                {
+                    textList.Add(textForTranslate.Substring(i, 10000));
+                }
+            }
+            else
+            {
+                textList.Add(textForTranslate);
+            }
+
+
+            return textList;
+        }
+
         public static List<(string, string, string)> ConvertTextToSubtitleFile(string translatedText, List<(string, string, string)> srtFile)
         {
             int indexStart = 0;
             int indexEnd = 0;
             List<(string, string, string)> newSrtFile = new List<(string, string, string)>();
 
+
             foreach ((string, string, string) blockSrt in srtFile)
             {
                 indexEnd = indexStart + blockSrt.Item3.Length;
+                if (indexEnd < translatedText.Length)
+                {
+                    while (translatedText[indexEnd] != ' ')
+                    {
+                        indexEnd++;
+                    }
+                    indexEnd++;
+                }
+                else
+                {
+                    indexEnd = translatedText.Length;
+                }
+
+                if (blockSrt == srtFile[srtFile.Count - 1] && indexEnd != translatedText.Length)
+                {
+                    indexEnd = translatedText.Length;
+                }
+
+
                 string item3 = translatedText.Substring(indexStart, indexEnd - indexStart);
                 newSrtFile.Add((blockSrt.Item1, blockSrt.Item2, item3));
                 indexStart = indexEnd;
@@ -166,8 +207,15 @@ namespace Translater
                         i++;
                         break;
                     case 3:
-                        srtFileTupleList.Add(srtFileTuple);
-                        i = 0;
+                        if (line != "")
+                        {
+                            srtFileTuple.Item3 += "\r\n" + line;
+                        }
+                        else
+                        {
+                            srtFileTupleList.Add(srtFileTuple);
+                            i = 0;
+                        }
                         break;
                 }
                 // что-нибудь делаем с прочитанной строкой s
