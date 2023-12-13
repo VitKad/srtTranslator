@@ -20,7 +20,21 @@ namespace Translater
             //Console.WriteLine(translate(input, languageFrom, languageTo));
             Console.WriteLine("");
 
-            TranslateSubtitles();
+            string pathOut = "D:\\Projects\\srtTranslator\\Translater\\Out\\";
+            string pathIn = "D:\\Projects\\srtTranslator\\Translater\\In\\";
+
+            //Сортировка по дате создания файлов от мдм и взятие 20 первых файлов.
+            string[] allFilesInExchangeFolder = Directory.EnumerateFiles(pathOut).OrderBy(d => new FileInfo(d).CreationTime).Take(20).ToArray();
+
+            if (allFilesInExchangeFolder.Length > 0) //если обнаружен хоть один файл
+            {
+                foreach (string fileName in allFilesInExchangeFolder)
+                {
+                    TranslateSubtitles(fileName, pathIn); 
+                }   
+            }
+
+            //TranslateSubtitles();
             Console.ReadKey();
 
             //Работать в StringBuilder, но когда передовать в функцию переводчика, то преобразовать в string
@@ -89,13 +103,15 @@ namespace Translater
         }
 
 
-        public static void TranslateSubtitles()
+        public static void TranslateSubtitles(string pathOut, string pathIn)
         {
+            string fileName = System.IO.Path.GetFileNameWithoutExtension(pathOut); //сохранить имя файла без полного пути 
+
             string languageFrom = "en";
             string languageTo = "ru";
 
             string srtText = "";
-            List<(string, string, string)> srtFile = GetSRTFile(ref srtText);
+            List<(string, string, string)> srtFile = GetSRTFile(pathOut, ref srtText);
 
             Console.WriteLine(srtText);
             string textForTranslate = GetTextFromSRTFile(srtFile);
@@ -109,7 +125,7 @@ namespace Translater
 
             List<(string, string, string)> newSrtFile = ConvertTextToSubtitleFile(translatedText, srtFile);
 
-            WriteSRTFile(newSrtFile);
+            WriteSRTFile(newSrtFile, pathIn + fileName);
         }
 
 
@@ -191,10 +207,10 @@ namespace Translater
         }
 
 
-        public static List<(string, string, string)> GetSRTFile(ref string srtText)
+        public static List<(string, string, string)> GetSRTFile(string path, ref string srtText)
         {
             List<(string, string, string)> srtFileTupleList = new List<(string, string, string)>();
-            string path = "D:\\Projects\\srtTranslator\\Translater\\1.srt";
+            //string path = "D:\\Projects\\srtTranslator\\Translater\\1.srt";
             StreamReader f = new StreamReader(path);
             string text = "";
             int i = 0;
@@ -248,7 +264,7 @@ namespace Translater
             return text;*/
         }
         
-        public static void WriteSRTFile(List<(string, string, string)> newSrtFile)
+        public static void WriteSRTFile(List<(string, string, string)> newSrtFile, string pathIn)
         {
             string text = "";
             foreach ((string, string, string) blockSrt in newSrtFile)
@@ -258,8 +274,8 @@ namespace Translater
                 text += blockSrt.Item3 + "\r\n";
                 text += "\r\n";
             }
-            string path = "D:\\Projects\\srtTranslator\\Translater\\2.srt";
-            File.WriteAllText(path, text);
+            //string path = "D:\\Projects\\srtTranslator\\Translater\\2.srt";
+            File.WriteAllText(pathIn, text);
         }
     }
 }

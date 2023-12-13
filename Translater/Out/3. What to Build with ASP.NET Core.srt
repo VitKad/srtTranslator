@@ -1,0 +1,172 @@
+1
+00:00:02,140 --> 00:00:05,040
+Before we get into more detail,
+
+2
+00:00:05,040 --> 00:00:08,820
+I want to make sure we are on the same page regarding
+
+3
+00:00:08,820 --> 00:00:12,140
+front and back‑end applications.
+
+4
+00:00:12,140 --> 00:00:18,440
+A front‑end application is responsible for delivering content to the browser.
+
+5
+00:00:18,440 --> 00:00:21,300
+It has to be content the browser can understand,
+
+6
+00:00:21,300 --> 00:00:25,440
+such as HTML, CSS, and JavaScript.
+
+7
+00:00:25,440 --> 00:00:29,580
+We learned that one of the functionalities a web application can
+
+8
+00:00:29,580 --> 00:00:33,190
+provide is accessing data in a data store,
+
+9
+00:00:33,190 --> 00:00:35,440
+such as a database.
+
+10
+00:00:35,440 --> 00:00:38,860
+The front‑end application could implement the logic
+
+11
+00:00:38,860 --> 00:00:42,340
+to access the data store itself,
+
+12
+00:00:42,340 --> 00:00:46,850
+as well as the logic around it that makes sure the data is correct,
+
+13
+00:00:46,850 --> 00:00:49,440
+the business rules.
+
+14
+00:00:49,440 --> 00:00:54,840
+However, most of the time, it's a good idea to keep things separated.
+
+15
+00:00:54,840 --> 00:00:59,290
+Let the front end worry about the user interface and create another
+
+16
+00:00:59,290 --> 00:01:04,540
+application concerned with data and business rules.
+
+17
+00:01:04,540 --> 00:01:08,500
+This type of application is called a back‑end application,
+
+18
+00:01:08,500 --> 00:01:13,460
+and the type of back‑end application that provides data and
+
+19
+00:01:13,460 --> 00:01:17,990
+applies business rules is called a web API or,
+
+20
+00:01:17,990 --> 00:01:20,430
+in short, API.
+
+21
+00:01:20,430 --> 00:01:26,540
+Separation will give us a more maintainable application structure,
+
+22
+00:01:26,540 --> 00:01:32,540
+and it enables us to form separate front and back‑end teams,
+
+23
+00:01:32,540 --> 00:01:35,940
+but it also enables reusability.
+
+24
+00:01:35,940 --> 00:01:42,540
+Because it is a separate application now, other applications can consume it.
+
+25
+00:01:42,540 --> 00:01:46,140
+This could be other front‑end applications,
+
+26
+00:01:46,140 --> 00:01:47,910
+not just web applications,
+
+27
+00:01:47,910 --> 00:01:56,440
+but also desktop and mobile applications and even other back‑end applications.
+
+28
+00:01:56,440 --> 00:02:03,140
+ASP.NET Core lets you build powerful front and back‑end applications.
+
+29
+00:02:03,140 --> 00:02:08,540
+It contains three distinct application styles to create front ends,
+
+30
+00:02:08,540 --> 00:02:12,240
+MVC, Razor Pages, and Blazor.
+
+31
+00:02:12,240 --> 00:02:14,640
+But that's not all.
+
+32
+00:02:14,640 --> 00:02:19,940
+For back‑end applications, there is web API and gRPC.
+
+33
+00:02:19,940 --> 00:02:21,940
+And finally, there's SignalR,
+
+34
+00:02:21,940 --> 00:02:28,140
+a supporting technology that enables real‑time web applications.
+
+35
+00:02:28,140 --> 00:02:33,440
+In the coming course modules, I will introduce you to all of these.
+
+36
+00:02:33,440 --> 00:02:34,330
+For now,
+
+37
+00:02:34,330 --> 00:02:38,560
+it is enough to understand that ASP.NET Core can do
+
+38
+00:02:38,560 --> 00:02:42,740
+much more than just create a web page.
+
+39
+00:02:42,740 --> 00:02:49,040
+It is here to provide us with everything we need to create web applications,
+
+40
+00:02:49,040 --> 00:02:55,140
+not just the front end, but also all supporting applications.
+
+41
+00:02:55,140 --> 00:02:58,840
+Now that we know what ASP.NET Core can do,
+
+42
+00:02:58,840 --> 00:03:02,980
+you might ask, is ASP.NET Core a good choice,
+
+43
+00:03:02,980 --> 00:03:09,000
+and are there alternatives? Stay tuned.
+

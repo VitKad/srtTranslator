@@ -1,0 +1,136 @@
+1
+00:00:02,440 --> 00:00:03,960
+Hello, and welcome.
+
+2
+00:00:03,960 --> 00:00:08,750
+I'm Roland, and I've created a few other courses on the ASP.NET
+
+3
+00:00:08,750 --> 00:00:14,110
+Core topic in the past. This course is specifically about ASP.NET
+
+4
+00:00:14,110 --> 00:00:20,870
+Core 6 and is created with version 6.0. It's useful for any minor
+
+5
+00:00:20,870 --> 00:00:23,840
+version of ASP.NET Core 6.
+
+6
+00:00:23,840 --> 00:00:27,380
+Should you be looking for an older version, please take a look at
+
+7
+00:00:27,380 --> 00:00:32,040
+my author page to find a course relevant to you.
+
+8
+00:00:32,040 --> 00:00:36,440
+You probably know a bit about ASP.NET Core already.
+
+9
+00:00:36,440 --> 00:00:40,070
+Maybe you've seen a demo, played around with it, or maybe you've
+
+10
+00:00:40,070 --> 00:00:44,750
+seen some documentation, but let's start at the very beginning
+
+11
+00:00:44,750 --> 00:00:49,140
+anyway to give you the whole big picture.
+
+12
+00:00:49,140 --> 00:00:54,440
+Before I start, you will have to be aware of a couple of things.
+
+13
+00:00:54,440 --> 00:00:55,230
+First,
+
+14
+00:00:55,230 --> 00:01:00,280
+the intent of this course. It is meant as an overview of all that
+
+15
+00:01:00,280 --> 00:01:04,290
+ASP.NET Core is and what you can do with it.
+
+16
+00:01:04,290 --> 00:01:09,140
+That doesn't mean this will be a course with just slides.
+
+17
+00:01:09,140 --> 00:01:14,000
+I also show you code so that in addition to the theory, you gain a
+
+18
+00:01:14,000 --> 00:01:17,540
+good technical understanding of the different parts,
+
+19
+00:01:17,540 --> 00:01:22,920
+just not in a way that you can code along or start creating ASP.NET Core
+
+20
+00:01:22,920 --> 00:01:28,940
+applications right after watching this course. You'll need to watch additional
+
+21
+00:01:28,940 --> 00:01:34,270
+courses before you can do that. But at the very least, this course will
+
+22
+00:01:34,270 --> 00:01:40,180
+inspire you to make the right choices on what part of ASP.NET Core you could
+
+23
+00:01:40,180 --> 00:01:43,940
+zoom into next. In terms of knowledge,
+
+24
+00:01:43,940 --> 00:01:48,580
+we need a starting point in order to proceed. First of all,
+
+25
+00:01:48,580 --> 00:01:53,970
+I'm assuming that you know how the web works with HTTP, requests, and
+
+26
+00:01:53,970 --> 00:02:00,400
+responses. You should have at least a basic understanding of how HTML and
+
+27
+00:02:00,400 --> 00:02:05,930
+CSS work because these technologies form the basis of every ASP.NET Core
+
+28
+00:02:05,930 --> 00:02:12,170
+application. I'm going to show you code examples. To understand them, I
+
+29
+00:02:12,170 --> 00:02:17,790
+also need you to know what .NET is, and you should be able to read the C#
+
+30
+00:02:17,790 --> 00:02:20,540
+programming language.
+
+31
+00:02:20,540 --> 00:02:22,430
+If you have knowledge gaps,
+
+32
+00:02:22,430 --> 00:02:27,140
+I would recommend watching other big picture courses around these topics
+
+33
+00:02:27,140 --> 00:02:32,920
+first. Depending on your learning style, looking at my code examples or
+
+34
+00:02:32,920 --> 00:02:45,000
+experimenting with them might be beneficial. If so, you can find all content in this GitHub repository.
+

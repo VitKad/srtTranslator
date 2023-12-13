@@ -1,0 +1,128 @@
+1
+00:00:01,840 --> 00:00:07,060
+In the Program.cs file, the part between the creation of the app
+
+2
+00:00:07,060 --> 00:00:13,440
+object and running it consists of method calls on the app object
+
+3
+00:00:13,440 --> 00:00:18,900
+that mainly start with the word, use. We're setting up the
+
+4
+00:00:18,900 --> 00:00:21,940
+internal request pipeline here.
+
+5
+00:00:21,940 --> 00:00:27,740
+This is the part where we're opting in on the ASP.NET Core features.
+
+6
+00:00:27,740 --> 00:00:31,930
+Once a request reaches our application through Kestrel,
+
+7
+00:00:31,930 --> 00:00:37,040
+it is processed by a number of steps that make up the request pipeline.
+
+8
+00:00:37,040 --> 00:00:40,230
+These steps are called middleware.
+
+9
+00:00:40,230 --> 00:00:45,170
+All middleware in order will have the chance to do something
+
+10
+00:00:45,170 --> 00:00:49,040
+with the request, forming the response.
+
+11
+00:00:49,040 --> 00:00:52,650
+If you don't configure any middleware in your application,
+
+12
+00:00:52,650 --> 00:00:57,740
+your application would simply do nothing when it receives a request.
+
+13
+00:00:57,740 --> 00:01:03,320
+We have to plug in middleware for routing, which maps the URL used in the
+
+14
+00:01:03,320 --> 00:01:09,330
+browser to a part in our application. And when we want to make static files,
+
+15
+00:01:09,330 --> 00:01:13,940
+such as images and CSS and JavaScript files available,
+
+16
+00:01:13,940 --> 00:01:16,140
+there is middleware for that.
+
+17
+00:01:16,140 --> 00:01:19,240
+The same goes for authorization.
+
+18
+00:01:19,240 --> 00:01:25,940
+So in the code, you'll find UseRouting, UseStaticFiles, and UseAuthorization,
+
+19
+00:01:25,940 --> 00:01:31,640
+which are all extension methods that set up the middleware in the pipeline.
+
+20
+00:01:31,640 --> 00:01:35,700
+UseRouting, in this case, enables a general routing
+
+21
+00:01:35,700 --> 00:01:41,390
+feature, and MapRazorPages will make sure that the URL is
+
+22
+00:01:41,390 --> 00:01:44,880
+mapped to a corresponding Razor page.
+
+23
+00:01:44,880 --> 00:01:50,340
+This last part is specific for the application style, RazorPages.
+
+24
+00:01:50,340 --> 00:01:55,050
+The order in which middleware is plugged in is important since the
+
+25
+00:01:55,050 --> 00:02:01,540
+request data travels through the middleware in sequence. Before showing a
+
+26
+00:02:01,540 --> 00:02:04,860
+Razor page at all, you want to do authorization,
+
+27
+00:02:04,860 --> 00:02:09,300
+for example. There's something else to say about the StaticFiles
+
+28
+00:02:09,300 --> 00:02:16,580
+middleware. Only files present in the wwwroot folder can be accessed by
+
+29
+00:02:16,580 --> 00:02:21,270
+this middleware, so all static files should be in there.
+
+30
+00:02:21,270 --> 00:02:27,440
+All other files in the project cannot be downloaded directly.
+
+31
+00:02:27,440 --> 00:02:31,440
+There are many more examples of building middleware,
+
+32
+00:02:31,440 --> 00:02:43,000
+and there's also the possibility to create your own. You'll see the way to write the UI part of an ASP.NET Core application, next.
+
