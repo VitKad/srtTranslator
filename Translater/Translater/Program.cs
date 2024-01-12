@@ -8,6 +8,7 @@ using System.Web;
 using System.Net;
 using System.IO;
 using static System.Net.Mime.MediaTypeNames;
+using System.Collections.ObjectModel;
 
 namespace Translater
 {
@@ -216,6 +217,10 @@ namespace Translater
             List<(string, string, string)> newSrtFile = new List<(string, string, string)>();
 
             int countSubLines = srtFile.Count;
+            int countCharactersPerLine = translatedText.Length / countSubLines;
+            Console.WriteLine("Общее количество символов: " + translatedText.Length);
+            Console.WriteLine("количество символов на одну линию: " + countCharactersPerLine);
+
             double totalSeconds = GetTotalTimeSubtitles(countSubLines, srtFile);
 
             Console.WriteLine("Общее время: " + totalSeconds);
@@ -227,19 +232,52 @@ namespace Translater
             string strTime = "";
             double startTime = 0;
             double endTime = timeForOneLine;
+            int unit = 1;
+            int lineCorrection = 0;
+            int startIndexStr = countCharactersPerLine;
 
-            for (int i=1; i<=countSubLines; i++)
+            for (int i=0; i<countSubLines; i++)
             {
                 time = TimeSpan.FromSeconds(startTime);
                 strTime = time.ToString(@"hh\:mm\:ss\,fff");
                 time = TimeSpan.FromSeconds(endTime);
                 strTime += " --> " + time.ToString(@"hh\:mm\:ss\,fff");
-                Console.WriteLine(strTime);
+                //Console.WriteLine(strTime);
                 startTime += timeForOneLine;
                 endTime += timeForOneLine;
 
-               //string item3 = translatedText.Substring(indexStart, indexEnd - indexStart);
-                newSrtFile.Add((i.ToString(), strTime, ""));
+                //startIndexStr = i * startIndexStr;
+                //преобразование строки к слову
+                string textLine = translatedText.Substring(i * countCharactersPerLine, countCharactersPerLine);
+
+                
+                /*while (!textLine.Last().Equals(' '))
+                {
+                    lineCorrection += unit;
+                    textLine = translatedText.Substring(startIndexStr, countCharactersPerLine + lineCorrection);
+                }
+                
+                unit *= -1;
+                Console.WriteLine("Unit: " + unit);
+                */
+                Console.WriteLine("Текст: " + textLine);
+                Console.WriteLine("Последний элемент: " + textLine.Last());
+                Console.WriteLine("Равен ли элемент пробелу?: " + textLine.Last().Equals(' '));
+
+              
+
+                if (i == countSubLines - 1)
+                {
+                    textLine = translatedText.Substring(i * startIndexStr);
+                    Console.WriteLine("Текст: " + textLine);
+
+                }
+
+                //startIndexStr = i * countCharactersPerLine + lineCorrection;
+
+                //lineCorrection = 0;
+
+                newSrtFile.Add(((i + 1).ToString(), strTime, textLine));
             }
 
 
