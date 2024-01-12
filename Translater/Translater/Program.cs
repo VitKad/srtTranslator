@@ -130,7 +130,7 @@ namespace Translater
                 List<(string, string, string)> newSrtFile = CreateNewSubtitle(translatedText, srtFile);
                 //List <(string, string, string)> newSrtFile = ConvertTextToSubtitleFile(translatedText, srtFile);
 
-                //WriteSRTFile(newSrtFile, pathIn + fileName);
+                WriteSRTFile(newSrtFile, pathIn + fileName);
 
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Готово");
@@ -218,8 +218,42 @@ namespace Translater
             int countSubLines = srtFile.Count;
             double totalSeconds = GetTotalTimeSubtitles(countSubLines, srtFile);
 
-            Console.WriteLine(totalSeconds);
+            Console.WriteLine("Общее время: " + totalSeconds);
 
+            double timeForOneLine = (totalSeconds / countSubLines);
+            Console.WriteLine("Время одной линии: " + timeForOneLine);
+
+            TimeSpan time;
+            string strTime = "";
+            double startTime = 0;
+            double endTime = timeForOneLine;
+
+            for (int i=1; i<=countSubLines; i++)
+            {
+                time = TimeSpan.FromSeconds(startTime);
+                strTime = time.ToString(@"hh\:mm\:ss\,fff");
+                time = TimeSpan.FromSeconds(endTime);
+                strTime += " --> " + time.ToString(@"hh\:mm\:ss\,fff");
+                Console.WriteLine(strTime);
+                startTime += timeForOneLine;
+                endTime += timeForOneLine;
+
+               //string item3 = translatedText.Substring(indexStart, indexEnd - indexStart);
+                newSrtFile.Add((i.ToString(), strTime, ""));
+            }
+
+
+            /*
+            TimeSpan time = TimeSpan.FromSeconds(timeForOneLine);
+            string str = time.ToString(@"hh\:mm\:ss\,fff");
+            Console.WriteLine(str);
+
+            timeForOneLine += timeForOneLine;
+
+            time = TimeSpan.FromSeconds(timeForOneLine);
+            str = time.ToString(@"hh\:mm\:ss\,fff");
+            Console.WriteLine(str);
+            */
             /*
             foreach ((string, string, string) blockSrt in srtFile)
             {
