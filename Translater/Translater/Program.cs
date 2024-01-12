@@ -123,13 +123,14 @@ namespace Translater
                 List<string> listForTranslate = GetTextList(textForTranslate);
 
                 string translatedText = TranslateText(listForTranslate, languageFrom, languageTo);
-                //Console.WriteLine("Перевод:");
-                //Console.WriteLine(translatedText);
-                //Console.WriteLine();
+                Console.WriteLine("Перевод:");
+                Console.WriteLine(translatedText);
+                Console.WriteLine();
 
-                List<(string, string, string)> newSrtFile = ConvertTextToSubtitleFile(translatedText, srtFile);
+                List<(string, string, string)> newSrtFile = CreateNewSubtitle(translatedText, srtFile);
+                //List <(string, string, string)> newSrtFile = ConvertTextToSubtitleFile(translatedText, srtFile);
 
-                WriteSRTFile(newSrtFile, pathIn + fileName);
+                //WriteSRTFile(newSrtFile, pathIn + fileName);
 
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Готово");
@@ -208,6 +209,66 @@ namespace Translater
             return newSrtFile;
         }
 
+        public static List<(string, string, string)> CreateNewSubtitle(string translatedText, List<(string, string, string)> srtFile)
+        {
+            int indexStart = 0;
+            int indexEnd = 0;
+            List<(string, string, string)> newSrtFile = new List<(string, string, string)>();
+
+            int countSubLines = srtFile.Count;
+            double totalSeconds = GetTotalTimeSubtitles(countSubLines, srtFile);
+
+            Console.WriteLine(totalSeconds);
+
+            /*
+            foreach ((string, string, string) blockSrt in srtFile)
+            {
+                indexEnd = indexStart + blockSrt.Item3.Length;
+                if (indexEnd < translatedText.Length)
+                {
+                    while (translatedText[indexEnd] != ' ')
+                    {
+                        indexEnd++;
+                    }
+                    indexEnd++;
+                }
+                else
+                {
+                    indexEnd = translatedText.Length;
+                }
+
+                if (blockSrt == srtFile[srtFile.Count - 1] && indexEnd != translatedText.Length)
+                {
+                    indexEnd = translatedText.Length;
+                }
+
+
+                string item3 = translatedText.Substring(indexStart, indexEnd - indexStart);
+                newSrtFile.Add((blockSrt.Item1, blockSrt.Item2, item3));
+                indexStart = indexEnd;
+            }
+            */
+            return newSrtFile;
+        }
+
+
+        public static double GetTotalTimeSubtitles(int countSubLines, List<(string, string, string)> srtFile)
+        {
+            string timeStr = srtFile[countSubLines - 1].Item2;
+            int timeIndex = timeStr.IndexOf("-->") + 4;
+            timeStr = timeStr.Substring(timeIndex);
+
+            string hourSub = timeStr.Substring(0, 2); ;
+            string minuteSub = timeStr.Substring(3, 2);
+            string secundSub = timeStr.Substring(6, 2);
+
+            double totalSeconds = Convert.ToDouble(hourSub) * 3600 + Convert.ToDouble(minuteSub) * 60 + Convert.ToDouble(secundSub);
+
+            return totalSeconds;
+
+        }
+
+
 
         public static string GetTextFromSRTFile(List<(string, string, string)> srtFile)
         {
@@ -217,9 +278,9 @@ namespace Translater
                 fullTextForTranslate += blockSrt.Item3;
             }
             
-            //Console.WriteLine("Полный текст для перевода:");
-            //Console.WriteLine(fullTextForTranslate);
-            //Console.WriteLine();
+            Console.WriteLine("Полный текст для перевода:");
+            Console.WriteLine(fullTextForTranslate);
+            Console.WriteLine();
             return fullTextForTranslate;
         }
 

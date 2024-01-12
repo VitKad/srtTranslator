@@ -1,0 +1,880 @@
+1
+00:00:00,870 --> 00:00:03,270
+We've now already covered quite a lot of concepts.
+
+2
+00:00:03,270 --> 00:00:07,410
+Let's head back to Visual Studio and see how we can make all of this happen.
+
+3
+00:00:07,410 --> 00:00:10,100
+We'll bring in MediatR and AutoMapper.
+
+4
+00:00:10,100 --> 00:00:12,570
+We'll then create a request and request handler,
+
+5
+00:00:12,570 --> 00:00:13,520
+and finally,
+
+6
+00:00:13,520 --> 00:00:16,470
+we'll prepare things so that our libraries can be
+
+7
+00:00:16,470 --> 00:00:19,920
+registered in the services collection.
+
+8
+00:00:19,920 --> 00:00:23,800
+If I would get paid for adding new files and new contracts,
+
+9
+00:00:23,800 --> 00:00:26,860
+then I would have made quite some money already today,
+
+10
+00:00:26,860 --> 00:00:29,930
+but only contracts, that's not very useful.
+
+11
+00:00:29,930 --> 00:00:33,120
+We'll need to actually write some implementation code,
+
+12
+00:00:33,120 --> 00:00:35,580
+and that's what I'm going to do next here.
+
+13
+00:00:35,580 --> 00:00:37,250
+So we're going to now, together,
+
+14
+00:00:37,250 --> 00:00:40,420
+write the business logic to get the list of all events,
+
+15
+00:00:40,420 --> 00:00:43,300
+and let's do that next.
+
+16
+00:00:43,300 --> 00:00:47,560
+So in order to write our business code, I'm going to need a couple of packages.
+
+17
+00:00:47,560 --> 00:00:50,160
+I'm actually going to be using AutoMapper and
+
+18
+00:00:50,160 --> 00:00:52,290
+MediatR as explained in the slides.
+
+19
+00:00:52,290 --> 00:00:56,080
+AutoMapper will be used to map between entities,
+
+20
+00:00:56,080 --> 00:01:00,000
+and MediatR will be used to write those requests and request handlers,
+
+21
+00:01:00,000 --> 00:01:03,630
+so the message and the message handler, that is.
+
+22
+00:01:03,630 --> 00:01:06,420
+To make it easy, I'm going to go to my application project,
+
+23
+00:01:06,420 --> 00:01:09,470
+and I'll bring in another item group that contains the
+
+24
+00:01:09,470 --> 00:01:13,420
+references to the packages I'll need.
+
+25
+00:01:13,420 --> 00:01:16,060
+So I've brought in AutoMapper with the extension for the
+
+26
+00:01:16,060 --> 00:01:19,380
+dependency injection and also MediatR.
+
+27
+00:01:19,380 --> 00:01:20,430
+If I save this file,
+
+28
+00:01:20,430 --> 00:01:24,280
+you can also see in the NuGet package manager that these
+
+29
+00:01:24,280 --> 00:01:28,030
+packages have indeed been added to my project.
+
+30
+00:01:28,030 --> 00:01:31,550
+So what I'll do now is I'll wrap what I'm going to do in a type,
+
+31
+00:01:31,550 --> 00:01:33,740
+and that is going to be my request,
+
+32
+00:01:33,740 --> 00:01:37,180
+and what I want to do is get all the events in a list.
+
+33
+00:01:37,180 --> 00:01:41,600
+So that is going to be, let's say, the message of what I want to do.
+
+34
+00:01:41,600 --> 00:01:43,070
+I want to get a list of all events.
+
+35
+00:01:43,070 --> 00:01:45,190
+So I'm going to wrap that in a type,
+
+36
+00:01:45,190 --> 00:01:49,210
+and that is going to be called the GetEventsListQuery,
+
+37
+00:01:49,210 --> 00:01:52,700
+I'm calling it query because I want to retrieve something,
+
+38
+00:01:52,700 --> 00:01:56,910
+and what I want to retrieve is that list of all events.
+
+39
+00:01:56,910 --> 00:01:59,280
+So I need to make this class a message,
+
+40
+00:01:59,280 --> 00:02:04,440
+and that I'm going to do by letting it implement the IRequest interface.
+
+41
+00:02:04,440 --> 00:02:06,960
+The parameter, the type parameter that is,
+
+42
+00:02:06,960 --> 00:02:07,780
+for IRequest,
+
+43
+00:02:07,780 --> 00:02:11,850
+is going to be the type of data that this query is going to be getting back,
+
+44
+00:02:11,850 --> 00:02:15,300
+and it's going to be a list of event list VMs.
+
+45
+00:02:15,300 --> 00:02:18,140
+That is another class that I'm going to be returning,
+
+46
+00:02:18,140 --> 00:02:20,410
+and I'm going to create a specific type,
+
+47
+00:02:20,410 --> 00:02:24,320
+a ViewModel, that I'm going to return for my client application.
+
+48
+00:02:24,320 --> 00:02:27,230
+It's going to be a ViewModel that is going to contain just
+
+49
+00:02:27,230 --> 00:02:29,850
+the properties to visualize it in a list,
+
+50
+00:02:29,850 --> 00:02:34,740
+just enough information so that I don't return too much data.
+
+51
+00:02:34,740 --> 00:02:38,150
+That means I'll add the class here because I haven't created that one yet.
+
+52
+00:02:38,150 --> 00:02:42,240
+It's going to be a new class, and it's going to be called EventListVm,
+
+53
+00:02:42,240 --> 00:02:45,300
+and it is going to be containing, like I said,
+
+54
+00:02:45,300 --> 00:02:49,370
+the data I want to visualize for an event when it's shown in a list.
+
+55
+00:02:49,370 --> 00:02:51,700
+It contains just a number of base properties,
+
+56
+00:02:51,700 --> 00:02:53,350
+not all properties of event,
+
+57
+00:02:53,350 --> 00:02:56,440
+but just the ones I'll need in the list here And
+
+58
+00:02:56,440 --> 00:03:00,140
+our _____ here is also satisfied, so this is the message.
+
+59
+00:03:00,140 --> 00:03:02,960
+I will also need a message handler that is going to be triggered,
+
+60
+00:03:02,960 --> 00:03:05,320
+let's say, when this message is sent,
+
+61
+00:03:05,320 --> 00:03:08,140
+and that will contain the actual business logic.
+
+62
+00:03:08,140 --> 00:03:11,190
+So that handler is going to be triggered by MediatR.
+
+63
+00:03:11,190 --> 00:03:12,950
+So I'm going to create another class,
+
+64
+00:03:12,950 --> 00:03:15,860
+and that is going to be to GetEventsListQuery handler,
+
+65
+00:03:15,860 --> 00:03:17,750
+handling the GetEventsListQuery.
+
+66
+00:03:17,750 --> 00:03:20,180
+That is going to be another class that now needs to
+
+67
+00:03:20,180 --> 00:03:22,650
+implement another interface from MediatR.
+
+68
+00:03:22,650 --> 00:03:25,880
+So specifying here that this implements the IRequest
+
+69
+00:03:25,880 --> 00:03:29,440
+handler in GetEventsListQuery, that's my message type,
+
+70
+00:03:29,440 --> 00:03:33,810
+and it's going to be returning the list of event list VMs.
+
+71
+00:03:33,810 --> 00:03:36,340
+Now it does still give me a red squiggly.
+
+72
+00:03:36,340 --> 00:03:36,940
+That is normal,
+
+73
+00:03:36,940 --> 00:03:39,740
+because I still need to implement the method when
+
+74
+00:03:39,740 --> 00:03:43,940
+I'm going to handle the message, and that method is effectively called Handle.
+
+75
+00:03:43,940 --> 00:03:46,620
+So this method will be called automatically when a
+
+76
+00:03:46,620 --> 00:03:50,380
+GetEventsListQuery is fired off, and this handler will pick it up.
+
+77
+00:03:50,380 --> 00:03:54,640
+So that is going to contain my business logic that's implemented here.
+
+78
+00:03:54,640 --> 00:03:57,340
+I've pasted in the code, and let me now take you through this.
+
+79
+00:03:57,340 --> 00:04:01,350
+In the constructor, I'm getting in a mapper; that is AutoMapper,
+
+80
+00:04:01,350 --> 00:04:03,030
+as you can see here.
+
+81
+00:04:03,030 --> 00:04:06,340
+I'm also going to be using an IAsyncRepository in events.
+
+82
+00:04:06,340 --> 00:04:08,560
+Indeed, this query handler is my business logic,
+
+83
+00:04:08,560 --> 00:04:12,090
+and it's going to work with the repositories to get the list of events.
+
+84
+00:04:12,090 --> 00:04:13,660
+With constructor injection,
+
+85
+00:04:13,660 --> 00:04:18,590
+I'm going to get an instance of both _eventRepository and AutoMapper.
+
+86
+00:04:18,590 --> 00:04:22,280
+Now the actual magic is happening here in the Handle method I set.
+
+87
+00:04:22,280 --> 00:04:24,560
+I'm going to be using my event repository.
+
+88
+00:04:24,560 --> 00:04:27,590
+I'm going to actually use the ListAllAsync method,
+
+89
+00:04:27,590 --> 00:04:29,540
+which we defined in the IAsyncRepository,
+
+90
+00:04:29,540 --> 00:04:35,160
+so the base interface, and I'm going to get all events ordered by date.
+
+91
+00:04:35,160 --> 00:04:38,770
+That gives me a list of entities, an IOrderedEnumerable of events,
+
+92
+00:04:38,770 --> 00:04:39,340
+so domain entities.
+
+93
+00:04:39,340 --> 00:04:43,220
+Now I don't want to return entities to my clients.
+
+94
+00:04:43,220 --> 00:04:47,130
+I want to return objects that I'm in control of so that they only
+
+95
+00:04:47,130 --> 00:04:49,270
+contain the properties that I want to return,
+
+96
+00:04:49,270 --> 00:04:52,310
+and those are available on my EventListVm.
+
+97
+00:04:52,310 --> 00:04:55,390
+Now, I don't want to write a mapping code myself,
+
+98
+00:04:55,390 --> 00:04:58,140
+either, so I'm going to use AutoMapper for that here.
+
+99
+00:04:58,140 --> 00:05:01,300
+And in AutoMapper, I can use the Map method as you see here,
+
+100
+00:05:01,300 --> 00:05:04,000
+and I can specify the type I want to map to,
+
+101
+00:05:04,000 --> 00:05:05,700
+that is the list of EventListVms.
+
+102
+00:05:05,700 --> 00:05:10,350
+And I'm going to use allEvents as the object that I want to be mapping from.
+
+103
+00:05:10,350 --> 00:05:15,040
+So what is going to be returned is a list of event list ViewModels.
+
+104
+00:05:15,040 --> 00:05:19,190
+Now AutoMapper does need some more information for this to actually work.
+
+105
+00:05:19,190 --> 00:05:21,560
+It does need what is known as a profile.
+
+106
+00:05:21,560 --> 00:05:24,750
+A profile will contain mapping information so that
+
+107
+00:05:24,750 --> 00:05:27,940
+AutoMapper knows if it should actually be able to try to
+
+108
+00:05:27,940 --> 00:05:30,150
+map from this type to another type.
+
+109
+00:05:30,150 --> 00:05:32,420
+Now AutoMapper does a lot of work automatically,
+
+110
+00:05:32,420 --> 00:05:34,920
+but sometimes you may need to help it a bit,
+
+111
+00:05:34,920 --> 00:05:38,130
+but if the properties on EventListVm have the same
+
+112
+00:05:38,130 --> 00:05:42,870
+names as the ones on the actual entity, then it'll do the mapping itself.
+
+113
+00:05:42,870 --> 00:05:46,900
+If we then just create a profile, the mapping will be done automatically for us,
+
+114
+00:05:46,900 --> 00:05:48,760
+if we define that in a profile, that is.
+
+115
+00:05:48,760 --> 00:05:51,100
+So I'm going to go back to my application project,
+
+116
+00:05:51,100 --> 00:05:54,470
+and I'm going to create a folder called Profiles.
+
+117
+00:05:54,470 --> 00:05:56,690
+Now a profile is really nothing to be scared of.
+
+118
+00:05:56,690 --> 00:06:00,650
+It's just a simple class that contains what AutoMapper should be
+
+119
+00:06:00,650 --> 00:06:03,380
+knowing in terms of mapping between types.
+
+120
+00:06:03,380 --> 00:06:06,540
+I'm going to call this here the MappingProfile class.
+
+121
+00:06:06,540 --> 00:06:08,580
+It is like I said, just a class,
+
+122
+00:06:08,580 --> 00:06:11,560
+and it does need to inherit from the base Profile class.
+
+123
+00:06:11,560 --> 00:06:14,270
+That's a class that comes with AutoMapper.
+
+124
+00:06:14,270 --> 00:06:17,520
+In the constructor, I'm going to write my mappings.
+
+125
+00:06:17,520 --> 00:06:20,730
+I'm going to create a mapping between Event and EventListVm,
+
+126
+00:06:20,730 --> 00:06:23,860
+and I'm going to specify and it has to be capable of
+
+127
+00:06:23,860 --> 00:06:26,280
+knowing about this mapping in two ways.
+
+128
+00:06:26,280 --> 00:06:29,530
+So from Event to EventListVm and vice versa,
+
+129
+00:06:29,530 --> 00:06:32,040
+that I'm doing here using the ReverseMap.
+
+130
+00:06:32,040 --> 00:06:35,650
+We'll add more mapping profiles as we go along.
+
+131
+00:06:35,650 --> 00:06:38,130
+I want to point out one more thing here.
+
+132
+00:06:38,130 --> 00:06:42,370
+So we can see here, I've used the IAsyncRepository in Event.
+
+133
+00:06:42,370 --> 00:06:43,230
+Of course,
+
+134
+00:06:43,230 --> 00:06:46,050
+we don't have an implementation just yet; that will be
+
+135
+00:06:46,050 --> 00:06:48,490
+plugged in using dependency injection,
+
+136
+00:06:48,490 --> 00:06:51,240
+basically the implementation of dependency inversion.
+
+137
+00:06:51,240 --> 00:06:55,160
+We still need to write an actual repository that knows
+
+138
+00:06:55,160 --> 00:06:57,100
+how to handle this in the database.
+
+139
+00:06:57,100 --> 00:07:00,690
+Now we don't have that one yet, but you can see that in the application project,
+
+140
+00:07:00,690 --> 00:07:03,070
+we're just talking with the abstraction.
+
+141
+00:07:03,070 --> 00:07:06,130
+That's what the application project is going to be doing,
+
+142
+00:07:06,130 --> 00:07:08,740
+just talking with the abstractions.
+
+143
+00:07:08,740 --> 00:07:13,880
+I think at this point my GetEventList implementation is more or less ready.
+
+144
+00:07:13,880 --> 00:07:16,090
+So I hope you understand this one already,
+
+145
+00:07:16,090 --> 00:07:19,600
+and I'm going to bring in yet another one for getting the event details,
+
+146
+00:07:19,600 --> 00:07:22,960
+and I'll show you the result of that.
+
+147
+00:07:22,960 --> 00:07:26,390
+I have now brought in a few extra classes,
+
+148
+00:07:26,390 --> 00:07:29,620
+which are going to be used to get the event details.
+
+149
+00:07:29,620 --> 00:07:33,000
+So I have here another query, GetEventDetail,
+
+150
+00:07:33,000 --> 00:07:36,140
+which is going to be a little different compared to our
+
+151
+00:07:36,140 --> 00:07:38,790
+GetEventsListQuery in the sense that the
+
+152
+00:07:38,790 --> 00:07:43,010
+GetEventDetailQuery contains an extra parameter.
+
+153
+00:07:43,010 --> 00:07:46,780
+I need to know which event detail do I need to fetch.
+
+154
+00:07:46,780 --> 00:07:49,320
+We have wrapped it here in a Guid Id.
+
+155
+00:07:49,320 --> 00:07:54,840
+Notice that the IRequest is now going to be generic in EventDetailVm,
+
+156
+00:07:54,840 --> 00:07:58,530
+so the return type is going to be a different VM,
+
+157
+00:07:58,530 --> 00:08:02,830
+a different ViewModel that contains more properties about the event,
+
+158
+00:08:02,830 --> 00:08:05,480
+event detail information, that is.
+
+159
+00:08:05,480 --> 00:08:09,780
+Notice that I have a nested entity here called CategoryDto.
+
+160
+00:08:09,780 --> 00:08:14,450
+I also need to know information about the category of that event.
+
+161
+00:08:14,450 --> 00:08:16,170
+That is a different type.
+
+162
+00:08:16,170 --> 00:08:19,070
+It's again not going to be the actual category entity
+
+163
+00:08:19,070 --> 00:08:20,360
+that I'm going to be returning.
+
+164
+00:08:20,360 --> 00:08:25,180
+I'm going to be returning a nested CategoryDto containing the id and the name
+
+165
+00:08:25,180 --> 00:08:29,980
+of that category that I need to return for my event detail.
+
+166
+00:08:29,980 --> 00:08:33,820
+Now the GetEventDetailQuery handler is also included here,
+
+167
+00:08:33,820 --> 00:08:36,040
+and I'll take you through that one as well.
+
+168
+00:08:36,040 --> 00:08:38,770
+It's again an IRequest handler that is now going to be
+
+169
+00:08:38,770 --> 00:08:40,700
+triggered by the GetEventDetailQuery,
+
+170
+00:08:40,700 --> 00:08:44,230
+and it's going to return not a list of EventListVms,
+
+171
+00:08:44,230 --> 00:08:47,510
+but a single EventDetailVm.
+
+172
+00:08:47,510 --> 00:08:49,540
+We're going to again use the _eventRepository,
+
+173
+00:08:49,540 --> 00:08:52,790
+but we're also going to use a _categoryRepository,
+
+174
+00:08:52,790 --> 00:08:55,850
+and we're going to be using AutoMapper again.
+
+175
+00:08:55,850 --> 00:08:59,880
+The constructor is again going to be using a dependency injection to later on
+
+176
+00:08:59,880 --> 00:09:03,900
+get concrete implementations of these repositories plugged in.
+
+177
+00:09:03,900 --> 00:09:05,450
+In the Handle method,
+
+178
+00:09:05,450 --> 00:09:08,460
+which is going to be triggered when that message is received,
+
+179
+00:09:08,460 --> 00:09:13,090
+I'm going to get indeed the GetEventDetailQuery; that's the one we just saw,
+
+180
+00:09:13,090 --> 00:09:16,880
+containing the id of the event I want to get information of.
+
+181
+00:09:16,880 --> 00:09:18,780
+I'm again going to use my _eventRepository,
+
+182
+00:09:18,780 --> 00:09:22,260
+so my generic repository, and I'm going to call the .GetByIdAsync,
+
+183
+00:09:22,260 --> 00:09:24,540
+passing in the id.
+
+184
+00:09:24,540 --> 00:09:28,780
+That is going to return, or at least it should return, an EventDetailVm.
+
+185
+00:09:28,780 --> 00:09:33,800
+So I'm going to use, again, AutoMapper here to map to that target type.
+
+186
+00:09:33,800 --> 00:09:37,420
+Now remember that I also had in here a CategoryDto.
+
+187
+00:09:37,420 --> 00:09:43,270
+That is not going to be automatically returned by the GetByIdAsync for an event.
+
+188
+00:09:43,270 --> 00:09:47,170
+So I need also my _categoryRepository to get an events category,
+
+189
+00:09:47,170 --> 00:09:48,860
+and that's what I'm doing here.
+
+190
+00:09:48,860 --> 00:09:53,670
+I then use another mapping to map a category entity to a CategoryDto,
+
+191
+00:09:53,670 --> 00:09:57,310
+and then finally, I return my EventDetail.
+
+192
+00:09:57,310 --> 00:10:00,410
+And that will work fine, that will compile,
+
+193
+00:10:00,410 --> 00:10:03,540
+but I also need a few more mappings because I've added here
+
+194
+00:10:03,540 --> 00:10:05,490
+a mapping from Event to EventDetailVm,
+
+195
+00:10:05,490 --> 00:10:09,500
+and another one from Category to CategoryDto.
+
+196
+00:10:09,500 --> 00:10:12,190
+So I need to go back to my MappingProfile, and I need to
+
+197
+00:10:12,190 --> 00:10:16,040
+bring in a mapping from Event to EventDetailVm, and another
+
+198
+00:10:16,040 --> 00:10:18,480
+one from Category to CategoryDto.
+
+199
+00:10:18,480 --> 00:10:22,560
+There we go. With those in place, this will actually run fine.
+
+200
+00:10:22,560 --> 00:10:26,280
+We can't test it yet, but we'll see that later.
+
+201
+00:10:26,280 --> 00:10:30,990
+I'm ready to do one more thing. I've used in my application project, now
+
+202
+00:10:30,990 --> 00:10:35,160
+MediatR and AutoMapper. These two packages need to be registered with the
+
+203
+00:10:35,160 --> 00:10:39,340
+service collection of my application. Now we don't have direct access to
+
+204
+00:10:39,340 --> 00:10:43,430
+the service collection inside of my ASP.NET Core application, that you
+
+205
+00:10:43,430 --> 00:10:44,970
+still need to bring in later on.
+
+206
+00:10:44,970 --> 00:10:47,810
+So what I'll do is I'll bring in a new class that is going
+
+207
+00:10:47,810 --> 00:10:51,070
+to add an extension on top of this service collection class,
+
+208
+00:10:51,070 --> 00:10:54,210
+so using an extension method.
+
+209
+00:10:54,210 --> 00:10:59,070
+So I'm going to bring in a new class called ApplicationServiceRegistration.
+
+210
+00:10:59,070 --> 00:10:59,860
+So as you can see,
+
+211
+00:10:59,860 --> 00:11:02,400
+I've now made this into an extension method on
+
+212
+00:11:02,400 --> 00:11:05,930
+IServiceCollection, and I'm going to be registering
+
+213
+00:11:05,930 --> 00:11:09,290
+AutoMapper and MediatR on the services collection.
+
+214
+00:11:09,290 --> 00:11:10,220
+Also here,
+
+215
+00:11:10,220 --> 00:11:15,160
+I'm returning the services to the caller, that I'll need later on
+
+216
+00:11:15,160 --> 00:11:19,140
+in my ASP.NET Core application to make sure that AutoMapper and
+
+217
+00:11:19,140 --> 00:11:22,680
+MediatR have correctly been registered.
+
+218
+00:11:22,680 --> 00:11:23,510
+Now it is in place.
+
+219
+00:11:23,510 --> 00:11:27,550
+Let's do another build, and that seems to work fine.
+
+220
+00:11:27,550 --> 00:11:31,000
+So we're in good shape here. Let's now return to the slides.
+
