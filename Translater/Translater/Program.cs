@@ -124,9 +124,9 @@ namespace Translater
                 List<string> listForTranslate = GetTextList(textForTranslate);
 
                 string translatedText = TranslateText(listForTranslate, languageFrom, languageTo);
-                Console.WriteLine("Перевод:");
-                Console.WriteLine(translatedText);
-                Console.WriteLine();
+                //Console.WriteLine("Перевод:");
+                //Console.WriteLine(translatedText);
+                //Console.WriteLine();
 
                 List<(string, string, string)> newSrtFile = CreateNewSubtitle(translatedText, srtFile);
                 //List <(string, string, string)> newSrtFile = ConvertTextToSubtitleFile(translatedText, srtFile);
@@ -218,15 +218,15 @@ namespace Translater
 
             int countSubLines = srtFile.Count;
             int countCharactersPerLine = translatedText.Length / countSubLines;
-            Console.WriteLine("Общее количество символов: " + translatedText.Length);
-            Console.WriteLine("количество символов на одну линию: " + countCharactersPerLine);
+            //Console.WriteLine("Общее количество символов: " + translatedText.Length);
+            //Console.WriteLine("количество символов на одну линию: " + countCharactersPerLine);
 
             double totalSeconds = GetTotalTimeSubtitles(countSubLines, srtFile);
 
-            Console.WriteLine("Общее время: " + totalSeconds);
+            //Console.WriteLine("Общее время: " + totalSeconds);
 
             double timeForOneLine = (totalSeconds / countSubLines);
-            Console.WriteLine("Время одной линии: " + timeForOneLine);
+            //Console.WriteLine("Время одной линии: " + timeForOneLine);
 
             TimeSpan time;
             string strTime = "";
@@ -260,16 +260,16 @@ namespace Translater
                 unit *= -1;
                 Console.WriteLine("Unit: " + unit);
                 */
-                Console.WriteLine("Текст: " + textLine);
-                Console.WriteLine("Последний элемент: " + textLine.Last());
-                Console.WriteLine("Равен ли элемент пробелу?: " + textLine.Last().Equals(' '));
+                //Console.WriteLine("Текст: " + textLine);
+                //Console.WriteLine("Последний элемент: " + textLine.Last());
+                //Console.WriteLine("Равен ли элемент пробелу?: " + textLine.Last().Equals(' '));
 
               
 
                 if (i == countSubLines - 1)
                 {
                     textLine = translatedText.Substring(i * startIndexStr);
-                    Console.WriteLine("Текст: " + textLine);
+                    //Console.WriteLine("Текст: " + textLine);
 
                 }
 
@@ -350,9 +350,9 @@ namespace Translater
                 fullTextForTranslate += blockSrt.Item3;
             }
             
-            Console.WriteLine("Полный текст для перевода:");
-            Console.WriteLine(fullTextForTranslate);
-            Console.WriteLine();
+            //Console.WriteLine("Полный текст для перевода:");
+            //Console.WriteLine(fullTextForTranslate);
+            //Console.WriteLine();
             return fullTextForTranslate;
         }
 
